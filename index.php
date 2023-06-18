@@ -1,10 +1,10 @@
 <?php
-
+require __DIR__ . '/vendor/autoload.php';
 use App\A;
 use App\B;
 use App\models\productModel;
 
-require __DIR__ . '/vendor/autoload.php';
+
 
 
 $obj = new A();
@@ -17,3 +17,7 @@ $p->testmethod();
 
 
 ?>
+<img src="<?= settings()['logo'] ?>" alt="">
+<h1><?= settings()['root'] ?></h1>
+<h1><?= config("idb.root"); ?></h1>
+<h1><?= config("round55.a"); ?></h1>

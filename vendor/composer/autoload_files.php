@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '7b11c4dc42b3b3023073cb14e519683c' => $vendorDir . '/ralouphie/getallheaders/src/getallheaders.php',
+    'a3bae1cce77febac666f186d5f3645b0' => $baseDir . '/src/settings.php',
+    '84f94813882c6a3069ba9750fa07b553' => $baseDir . '/src/db/MysqliDb.php',
 );
