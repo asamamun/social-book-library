@@ -1,0 +1,20 @@
+{
+    "name": "user/social_library",
+    "description": "a project for online social library in php mysql",
+    "type": "project",
+    "require": {
+        "intervention/image": "^2.7"
+    },
+    "license": "gnu gpl",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shakil Miah",
+            "email": "shakilmiahcse36@gmail.com"
+        }
+    ]
+}
