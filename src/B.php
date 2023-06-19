@@ -5,3 +5,9 @@ class B{
         echo "class B testB called<br>";
     }
 }
+
+class C{
+    public function tastC(){
+        echo "class C testC callback";
+    }
+}
