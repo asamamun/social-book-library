@@ -25,7 +25,7 @@ $(document).ready(function () {
         });
     });
 
-    // Edit publisher button click
+    // when Edit publisher button click 
     $(document).on('click', '.edit-publisher', function () {
         var publisherId = $(this).data('id');
         var publisherName = $(this).data('name');
@@ -36,7 +36,7 @@ $(document).ready(function () {
         $('#editPublisherName').val(publisherName);
         $('#editPublisherAddress').val(publisherAddress);
         $('#editPublisherPhone').val(publisherPhone);
-
+        
         $('#editPublisherModal').modal('show');
     });
 

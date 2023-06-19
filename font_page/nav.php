@@ -139,7 +139,7 @@
       
 
       <div class="text-center m-2 p-2">
-        <h3>Browse books by category</h3>
+        <h3>Browse Books By Category</h3>
       </div>
       <div class="row">
         <div class="col-lg-6">
