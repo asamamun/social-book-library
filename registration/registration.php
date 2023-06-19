@@ -6,44 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Registration Form</h1>
-        <form id="registrationForm" method="post">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+        <h1 class="text-center mt-5">Registration Form</h1>
+        <div class="card">
+            <div class="card-header">Registration Now</div>
+            <div class="card-body">
+                <form id="registrationForm" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                        <small id="emailError" class="form-text text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                        <small id="passwordError" class="form-text text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="retypePassword" class="form-label">Retype Password</label>
+                        <input type="password" class="form-control" id="retypePassword" name="retypePassword">
+                        <small id="retypePasswordError" class="form-text text-danger"></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <div id="registrationMessage" class="mt-3"></div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
-                <small id="emailError" class="form-text text-danger"></small>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password">
-                <small id="passwordError" class="form-text text-danger"></small>
-            </div>
-            <div class="mb-3">
-                <label for="retypePassword" class="form-label">Retype Password</label>
-                <input type="password" class="form-control" id="retypePassword" name="retypePassword">
-                <small id="retypePasswordError" class="form-text text-danger"></small>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-        <div id="registrationMessage" class="mt-3"></div>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/jquery-3.7.0.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Email validation using regex pattern
             function validateEmail(email) {
                 var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,7 +67,7 @@
             }
 
             // Registration form submission
-            $('#registrationForm').submit(function (event) {
+            $('#registrationForm').submit(function(event) {
                 event.preventDefault();
 
                 var name = $('#name').val();
@@ -97,11 +102,11 @@
                         email: email,
                         password: password
                     },
-                    success: function (response) {
+                    success: function(response) {
                         // Display the registration message
                         $('#registrationMessage').text(response);
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         // Display an error message if AJAX request fails
                         $('#registrationMessage').text("An error occurred during registration");
                     }
