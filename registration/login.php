@@ -1,3 +1,57 @@
+<?php
+    require "../DB/db.php";
+    // session_start();
+    // $_SESSION['email'] = $_post['name'];
+    // $_SESSION['password'] = $_post['password'];
+
+    if(isset($_POST['submit'])){
+
+        $email =$_POST['email'];
+        $password =$_POST['password'];
+
+        $sql = "select * from users ";
+        $result = $conn->query($sql);
+        if($row = $result->fetch_assoc()){
+            if($row['email']== $email && $row['password'] == $password){
+                header("Location:../font_page/nav.php");
+            }else{
+                echo "Invalid email or password";
+            }
+        }
+
+
+
+
+        // if(isset($_POST['email']) && isset($_POST[' password'])){
+        //     $name = $_POST['email'];
+        //     $pass = $_POST['password']; 
+        //     //checking user email and password
+        //     $select = "select * from users where email='$name' limit 1";
+        //     $res = $conn->query($select); 
+
+        //     if($res->num_rows){
+        //         $row = $res->fetch_assoc();
+
+        //      var_dump($row);
+                
+        //         echo $row['password'];
+        //         if(password_verify($pass,$row['password'])){
+        //             // $message =  "valid user";
+        //             header("Location:./font_page/nav.php");
+        //         }
+        //         else{
+        //             $message = "invalid password";
+        //         }
+        //     }
+        //     else{
+        //         $message =  "invalid user";
+        //     }
+        //     // checking user email and password end
+            
+        
+        // }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +69,7 @@
         <div class="card">
             <div class="card-header">Login Now</div>
             <div class="card-body">
-                <form id="loginForm" method="post">
+                <form id="loginForm" action="" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
@@ -24,7 +78,7 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Login</button>
                 </form>
                 <div id="loginMessage" class="mt-3"></div>
             </div>
@@ -36,7 +90,7 @@
     <!-- jQuery -->
     <script src="../assets/js/jquery-3.7.0.min.js"></script>
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             // Login form submission
             $('#loginForm').submit(function(event) {
@@ -64,7 +118,7 @@
                 });
             });
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

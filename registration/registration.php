@@ -1,3 +1,14 @@
+<?php 
+    require "../DB/db.php"; 
+    if(isset($_POST['submit'])){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $sql ="INSERT INTO `users`VALUES('{$name}', '{$email}', '{$password}')";
+        $conn->query($sql) ;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +26,7 @@
         <div class="card">
             <div class="card-header">Registration Now</div>
             <div class="card-body">
-                <form id="registrationForm" method="post">
+                <form id="registrationForm" action="" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
@@ -35,7 +46,7 @@
                         <input type="password" class="form-control" id="retypePassword" name="retypePassword">
                         <small id="retypePasswordError" class="form-text text-danger"></small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Register</button>
                 </form>
                 <div id="registrationMessage" class="mt-3"></div>
             </div>

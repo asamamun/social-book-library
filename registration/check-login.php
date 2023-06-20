@@ -1,4 +1,5 @@
 <?php
+require "./registration/login.php";
 // Database configuration
 $servername = "localhost";
 $username = "root";
