@@ -5,9 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Country Count</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header bg-success text-white">Total Countries</div>
+            <div class="card-body bg-info">
+                <p class="card-text" id="countryCount"></p>
+            </div>
+        </div>
+    </div>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/jquery-3.7.0.min.js"></script>
+<script>
         $(document).ready(function () {
             // Fetch and display country count
             function fetchCountryCount() {
@@ -23,18 +36,7 @@
             // Fetch country count on page load
             fetchCountryCount();
         });
-    </script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="card mt-5">
-            <div class="card-header bg-success text-white">All Countries</div>
-            <div class="card-body bg-info">
-                <p class="card-text" id="countryCount"></p>
-            </div>
-        </div>
-    </div>
+</script>
 </body>
 
 </html>

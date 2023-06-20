@@ -2,7 +2,7 @@
 require 'connDB.php';
 
 $sql = "SELECT * FROM publishers";
-$result = mysqli_query($connection, $sql);
+$result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
@@ -20,5 +20,5 @@ if (mysqli_num_rows($result) > 0) {
     echo "<tr><td colspan='4'>No publishers found</td></tr>";
 }
 
-mysqli_close($connection);
+mysqli_close($conn);
 ?>

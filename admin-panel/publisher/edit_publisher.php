@@ -7,13 +7,13 @@ $publisherAddress = $_POST['publisherAddress'];
 $publisherPhone = $_POST['publisherPhone'];
 
 $sql = "UPDATE publishers SET name='$publisherName', address='$publisherAddress', phone='$publisherPhone' WHERE id='$publisherId'";
-$result = mysqli_query($connection, $sql);
+$result = mysqli_query($conn, $sql);
 
 if ($result) {
     echo "Publisher updated successfully";
 } else {
-    echo "Error updating publisher: " . mysqli_error($connection);
+    echo "Error updating publisher: " . mysqli_error($conn);
 }
 
-mysqli_close($connection);
+mysqli_close($conn);
 ?>

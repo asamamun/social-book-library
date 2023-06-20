@@ -4,13 +4,13 @@ require 'connDB.php';
 $publisherId = $_POST['publisherId'];
 
 $sql = "DELETE FROM publishers WHERE id='$publisherId'";
-$result = mysqli_query($connection, $sql);
+$result = mysqli_query($conn, $sql);
 
 if ($result) {
     echo "Publisher deleted successfully";
 } else {
-    echo "Error deleting publisher: " . mysqli_error($connection);
+    echo "Error deleting publisher: " . mysqli_error($conn);
 }
 
-mysqli_close($connection);
+mysqli_close($conn);
 ?>

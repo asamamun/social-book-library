@@ -2,75 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <style>
+    .sidebar {
+      background-color: #343a40;
+      color: #fff;
+      position: relative;
+      top: 56px; /* Height of the fixed navbar */
+    }
+
+    .sidebar .nav-link {
+      color: #fff;
+    }
+
+    .content {
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Registration Form</h1>
-        <form id="registrationForm" method="post">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="mb-3">
-                <label for="retypePassword" class="form-label">Retype Password</label>
-                <input type="password" class="form-control" id="retypePassword" name="retypePassword" required>
-                <small id="passwordError" class="form-text text-danger"></small>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="your-logo.png" alt="Logo">
+      </a>
     </div>
+  </nav>
 
-    <!-- Bootstrap JS -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="assets/js/jquery-3.7.0.min.js"></script>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-2 sidebar">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Orders</a>
+          </li>
+          <!-- Add more sidebar navigation items here -->
+        </ul>
+      </div>
+      <!-- Content -->
+      <div class="col-lg-10 offset-lg-2">
+        <div class="content">
+          <!-- Add your content for each page here -->
+          <h1>Welcome to the Admin Panel</h1>
+          <p>This is the main content area.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <script>
-        $(document).ready(function () {
-            // Password validation on form submit
-            $('#registrationForm').submit(function (event) {
-                event.preventDefault();
-
-                var password = $('#password').val();
-                var retypePassword = $('#retypePassword').val();
-
-                // Check if password and retype password match
-                if (password !== retypePassword) {
-                    $('#passwordError').text("Passwords do not match");
-                    return;
-                }
-
-                // Check password strength
-                if (!checkPasswordStrength(password)) {
-                    $('#passwordError').text("Password should contain at least one letter and one digit");
-                    return;
-                }
-
-                // Submit the form if validation passes
-                this.submit();
-            });
-
-            // Function to check password strength
-            function checkPasswordStrength(password) {
-                var pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-                return pattern.test(password);
-            }
-        });
-    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
