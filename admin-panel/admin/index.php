@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +17,7 @@
       left: 0;
       padding: 20px;
       transition: transform 0.3s ease-in-out;
+      z-index: 1021;
     }
 
     .sidebar ul {
@@ -31,14 +33,11 @@
 
     .content {
       padding: 20px;
+      margin-left: 15rem;
       transition: margin-left 0.3s ease-in-out;
     }
 
     .toggle-btn {
-      display: none;
-    }
-
-    .close-btn {
       display: none;
     }
 
@@ -64,7 +63,7 @@
       }
 
       .content.active {
-        margin-left: 250px;
+        margin-left: 0px;
       }
 
       .toggle-btn {
@@ -88,7 +87,7 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li class="nav-item mt-5">
-        <a class="nav-link" href="../deshBoard/countCountry.php" data-page="../deshBoard/countCountry.php">Dashboard</a>
+        <a class="nav-link" href="../dashboard/dashboard.php" data-page="../dashboard/dashboard.php">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="" data-page="">Admin</a>
@@ -109,7 +108,7 @@
         <a class="nav-link" href="../district/district.php" data-page="../district/district.php">district</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../publisher/publisher.php" data-page="../publisher/publisher.php">district</a>
+        <a class="nav-link" href="../publisher/publisher.php" data-page="../publisher/publisher.php">Publisher</a>
       </li>
     </ul>
   </div>
@@ -124,13 +123,7 @@
   <script>
     $(document).ready(function() {
       $(".toggle-btn").click(function() {
-        $(".sidebar, .content, .close-btn").toggleClass("active");
-        $(".close-btn").toggleClass("hidden");
-      });
-
-      $(".close-btn").click(function() {
-        $(".sidebar, .content, .close-btn").removeClass("active");
-        $(".close-btn").addClass("hidden");
+        $(".sidebar, .content").toggleClass("active");
       });
 
       $(".nav-link").click(function(e) {
@@ -145,13 +138,11 @@
           method: "GET",
           success: function(response) {
             $("#page-content").html(response);
-            $(".sidebar, .content, .close-btn").removeClass("active");
-            $(".close-btn").addClass("hidden");
+            $(".sidebar, .content").removeClass("active");
           },
           error: function() {
             $("#page-content").html("<p>Error loading page.</p>");
-            $(".sidebar, .content, .close-btn").removeClass("active");
-            $(".close-btn").addClass("hidden");
+            $(".sidebar, .content").removeClass("active");
           }
         });
       }
