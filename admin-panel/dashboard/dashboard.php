@@ -18,7 +18,7 @@ require "./get_count.php";
                 <div class="col-2"></div>
                 <div class="col-3">
                     <div class="card border-primary mb-3 text-center bg-info  rounded-5 " style="max-width: 18rem;">
-                        <div class="card-header fs-4  text-light">All Books</div>
+                        <div class="card-header fs-4  text-light">Total Books</div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['books']?></p>
@@ -28,7 +28,7 @@ require "./get_count.php";
                 <div class="col-2"></div>
                 <div class="col-3">
                     <div class="card border-primary mb-3 text-center bg-info  rounded-5" style="max-width: 18rem;">
-                        <div class="card-header  fs-4 text-light">All Users </div>
+                        <div class="card-header  fs-4 text-light">Total Users </div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['users']?> </p>
@@ -42,7 +42,7 @@ require "./get_count.php";
                 <div class="col-2"></div>
                 <div class="col-3">
                     <div class="card border-primary mb-3 text-center bg-info rounded-5" style="max-width: 18rem;">
-                        <div class="card-header  fs-4 text-light">All Publishers</div>
+                        <div class="card-header  fs-4 text-light">Total Publishers</div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['publishers']?></p>
@@ -52,7 +52,7 @@ require "./get_count.php";
                 <div class="col-2"></div>
                 <div class="col-3">
                     <div class="card border-primary mb-3 text-center bg-info rounded-5" style="max-width: 18rem;">
-                        <div class="card-header  fs-4  text-light">All Writter </div>
+                        <div class="card-header  fs-4  text-light">Total Writter </div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['writers']?> </p>
@@ -66,7 +66,7 @@ require "./get_count.php";
                 <div class="col-2"></div>
                 <div class="col-3">
                     <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
-                        <div class="card-header">All Division</div>
+                        <div class="card-header">Total Division</div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text"><?= $arr['division']?></p>
@@ -76,7 +76,7 @@ require "./get_count.php";
                 <div class="col-2"></div>
                 <div class="col-3">
                     <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
-                        <div class="card-header">All District </div>
+                        <div class="card-header">Total District </div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text"><?= $arr['district']?> </p>
