@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <style>
     .sidebar {
-      background-color: #e5ebf0;
+      background-color: #F8F9FA;
       height: 100vh;
       width: 250px;
       position: fixed;
@@ -69,10 +69,15 @@
       .toggle-btn {
         display: block;
         position: fixed;
-        top: 10px;
+        top: 12px;
         left: 10px;
         z-index: 9999;
       }
+    }
+    img {
+      max-width: 200px;
+      max-height: 120px;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -83,10 +88,24 @@
     <span class="toggle-icon">&#9776;</span>
   </button>
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
+    <div class="container-fluid">
+      <a style="margin-left: 4rem;" class="navbar-brand" href="#">
+        <img src="../../font_page/assets/images/logo.png" alt="Logo">
+      </a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white ms-5" aria-current="page" href="#">Home</a>
+        </li>
+    </ul>
+    </div>
+  </nav>
+
+
   <!-- Sidebar -->
   <div class="sidebar">
     <ul class="nav flex-column">
-      <li class="nav-item mt-5">
+      <li style="margin-top: 5rem;" class="nav-item">
         <a class="nav-link" href="../dashboard/dashboard.php" data-page="../dashboard/dashboard.php">Dashboard</a>
       </li>
       <li class="nav-item">
@@ -114,7 +133,7 @@
   </div>
 
   <!-- Content -->
-  <div class="content">
+  <div class="content mt-5">
     <div id="page-content"></div>
   </div>
 
@@ -126,11 +145,17 @@
         $(".sidebar, .content").toggleClass("active");
       });
 
+      loadDashboardContent();
+
       $(".nav-link").click(function(e) {
         e.preventDefault();
         var page = $(this).data("page");
         loadPage(page);
       });
+
+        function loadDashboardContent() {
+            $('#page-content').load('../dashboard/dashboard.php');
+        }
 
       function loadPage(page) {
         $.ajax({

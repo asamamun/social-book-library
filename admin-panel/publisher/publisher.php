@@ -34,7 +34,7 @@
         </div>
 
         <!-- Publisher Table -->
-        <div class="card">
+        <div class="card mt-4">
             <div class="card-header">Manage Publishers</div>
             <div class="card-body">
                 <table class="table table-striped">
