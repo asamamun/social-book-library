@@ -15,8 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <!-- Bootstrap CSS --> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 
 <body>
@@ -31,19 +31,53 @@
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="description" class="form-control" id="description" name="description">
                         <small id="emailError" class="form-text text-danger"></small>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
-                        <small id="passwordError" class="form-text text-danger"></small>
+                        <label for="price" class="form-label">Price</label>
+                        <input type="price" class="form-control" id="price" name="price">
+                        <small id="priceError" class="form-text text-danger"></small>
                     </div>
                     <div class="mb-3">
-                        <label for="retypePassword" class="form-label">Retype Password</label>
-                        <input type="password" class="form-control" id="retypePassword" name="retypePassword">
-                        <small id="retypePasswordError" class="form-text text-danger"></small>
+                        <label for="sellprice" class="form-label">SellPrice</label>
+                        <input type="sellprice" class="form-control" id="sellprice" name="sellprice">
+                        <small id="sellpriceError" class="form-text text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoryId" class="form-label">Category</label>
+                        <select class="form-control" id="categoryId" name="categoryId" required>
+                            <option value="">Select Category</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subcategoryId" class="form-label">SubCategory</label>
+                        <select class="form-control" id="subcategoryId" name="subcategoryId" required>
+                            <option value="">Select SUbCategory</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Writer" class="form-label">Writer</label>
+                        <select class="form-control" id="Writer" name="Writer" required>
+                            <option value="">Select Writer</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publisher" class="form-label">Publisher</label>
+                        <select class="form-control" id="publisher" name="publisher" required>
+                            <option value="">Select publisher</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edition" class="form-label">Edition</label>
+                        <input type="text" class="form-control" id="edition" name="edition">
+                        <small id="sellpriceError" class="form-text text-danger"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location">
+                        <small id="sellpriceError" class="form-text text-danger"></small>
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary">Register</button>
                 </form>
@@ -55,9 +89,9 @@
     <!-- Bootstrap JS -->
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
-    <script src="../assets/js/jquery-3.7.0.min.js"></script>
+    <script src="./../../assets/js/jquery-3.7.0.min.js"></script>
 
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             // Email validation using regex pattern
             function validateEmail(email) {
@@ -123,7 +157,8 @@
                 });
             });
         });
-    </script>
+    </script> -->
+    <script src="./script.js"></script>
 </body>
 
 </html>
