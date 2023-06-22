@@ -106,7 +106,7 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li style="margin-top: 5rem;" class="nav-item">
-        <a class="nav-link" href="../dashboard/dashboard.php" data-page="../dashboard/dashboard.php">Dashboard</a>
+        <a class="nav-link" href="../dashboard/dashboard.php" data-page="../dashboard/dashboard.php"><b style="font-size:larger;">Dashboard</b></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="" data-page="">Admin</a>
