@@ -19,9 +19,7 @@
             }
         }
 
-
-
-
+        
         // if(isset($_POST['email']) && isset($_POST[' password'])){
         //     $name = $_POST['email'];
         //     $pass = $_POST['password']; 
