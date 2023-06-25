@@ -7,6 +7,7 @@ use App\models\productModel;
 
 
 
+
 $obj = new A();
 $obj->testA();
 $obj2 = new A();
