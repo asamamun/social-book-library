@@ -102,7 +102,8 @@
             </a>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-white ms-5" aria-current="page" href="homee.php">Home</a>
+                    <!-- <a class="nav-link active text-white ms-5" aria-current="page" href="homee.php">Home</a> -->
+                    <a class="text-white" href="homee.php">Home</a>
                 </li>
             </ul>
         </div>
@@ -137,7 +138,7 @@
                 <a class="nav-link" href="../publisher/publisher.php" data-page="../publisher/publisher.php">Publisher</a>
             </li>
             <li class="nav-item border bg-info text-center mt-4 rounded-3">
-            <a class="nav-link" href="#" id="logoutBtn">Logout</a>
+            <a class="nav-link" href="logout.php" id="logoutBtn">Logout</a>
             </li>
         </ul>
     </div>
