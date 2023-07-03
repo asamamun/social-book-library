@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <style>
     .sidebar {
-      background-color: #e5ebf0;
+      background-color: #F8F9FA;
       height: 100vh;
       width: 250px;
       position: fixed;
@@ -16,6 +17,7 @@
       left: 0;
       padding: 20px;
       transition: transform 0.3s ease-in-out;
+      z-index: 1021;
     }
 
     .sidebar ul {
@@ -31,14 +33,11 @@
 
     .content {
       padding: 20px;
+      margin-left: 15rem;
       transition: margin-left 0.3s ease-in-out;
     }
 
     .toggle-btn {
-      display: none;
-    }
-
-    .close-btn {
       display: none;
     }
 
@@ -64,16 +63,21 @@
       }
 
       .content.active {
-        margin-left: 250px;
+        margin-left: 0px;
       }
 
       .toggle-btn {
         display: block;
         position: fixed;
-        top: 10px;
+        top: 12px;
         left: 10px;
         z-index: 9999;
       }
+    }
+    img {
+      max-width: 200px;
+      max-height: 120px;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -84,11 +88,25 @@
     <span class="toggle-icon">&#9776;</span>
   </button>
 
+  <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
+    <div class="container-fluid">
+      <a style="margin-left: 4rem;" class="navbar-brand" href="#">
+        <img src="../../font_page/assets/images/logo.png" alt="Logo">
+      </a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white ms-5" aria-current="page" href="#">Home</a>
+        </li>
+    </ul>
+    </div>
+  </nav>
+
+
   <!-- Sidebar -->
   <div class="sidebar">
     <ul class="nav flex-column">
-      <li class="nav-item mt-5">
-        <a class="nav-link" href="../deshBoard/countCountry.php" data-page="../deshBoard/countCountry.php">Dashboard</a>
+      <li style="margin-top: 5rem;" class="nav-item">
+        <a class="nav-link" href="dashboard/dashboard.php" data-page="../dashboard/dashboard.php"><b style="font-size:larger;">Dashboard</b></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="" data-page="">Admin</a>
@@ -106,16 +124,19 @@
         <a class="nav-link" href="../country/country.php" data-page="../country/country.php">Country</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../district/district.php" data-page="../district/district.php">district</a>
+        <a class="nav-link" href="../district/district.php" data-page="../district/district.php">District</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../publisher/publisher.php" data-page="../publisher/publisher.php">district</a>
+        <a class="nav-link" href="../area/area.php" data-page="../area/area.php">Area</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../publisher/publisher.php" data-page="../publisher/publisher.php">Publisher</a>
       </li>
     </ul>
   </div>
 
   <!-- Content -->
-  <div class="content">
+  <div class="content mt-5">
     <div id="page-content"></div>
   </div>
 
@@ -124,14 +145,10 @@
   <script>
     $(document).ready(function() {
       $(".toggle-btn").click(function() {
-        $(".sidebar, .content, .close-btn").toggleClass("active");
-        $(".close-btn").toggleClass("hidden");
+        $(".sidebar, .content").toggleClass("active");
       });
 
-      $(".close-btn").click(function() {
-        $(".sidebar, .content, .close-btn").removeClass("active");
-        $(".close-btn").addClass("hidden");
-      });
+      loadDashboardContent();
 
       $(".nav-link").click(function(e) {
         e.preventDefault();
@@ -139,19 +156,21 @@
         loadPage(page);
       });
 
+        function loadDashboardContent() {
+            $('#page-content').load('../dashboard/dashboard.php');
+        }
+
       function loadPage(page) {
         $.ajax({
           url: page,
           method: "GET",
           success: function(response) {
             $("#page-content").html(response);
-            $(".sidebar, .content, .close-btn").removeClass("active");
-            $(".close-btn").addClass("hidden");
+            $(".sidebar, .content").removeClass("active");
           },
           error: function() {
             $("#page-content").html("<p>Error loading page.</p>");
-            $(".sidebar, .content, .close-btn").removeClass("active");
-            $(".close-btn").addClass("hidden");
+            $(".sidebar, .content").removeClass("active");
           }
         });
       }

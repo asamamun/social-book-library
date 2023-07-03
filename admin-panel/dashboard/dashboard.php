@@ -12,61 +12,52 @@ require "./get_count.php";
 
     <div class="container">
         <p class="text-center fs-1 text-success">Welcome to Dashboard</p>
-        <div class="row border py-3 text-bg-secondary  ">
+        <div class="row border py-3 rounded-3 ">
             <!-- first row -->
             <div class="row mt-3 ">
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <div class="card border-primary mb-3 text-center bg-info  rounded-5 " style="max-width: 18rem;">
-                        <div class="card-header fs-4  text-light">All Books</div>
+                <div class="col-md-3">
+                    <div class="card border-primary mb-3 text-center bg-info  rounded-3 " >
+                        <div class="card-header fs-4  text-light">Total Books</div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['books']?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <div class="card border-primary mb-3 text-center bg-info  rounded-5" style="max-width: 18rem;">
-                        <div class="card-header  fs-4 text-light">All Users </div>
+                <div class="col-md-3">
+                    <div class="card border-primary mb-3 text-center bg-info  rounded-3" >
+                        <div class="card-header  fs-4 text-light">Total Users </div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['users']?> </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-            </div>
-            <!-- second row -->
-            <div class="row mt-5">
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <div class="card border-primary mb-3 text-center bg-info rounded-5" style="max-width: 18rem;">
-                        <div class="card-header  fs-4 text-light">All Publishers</div>
+                <div class="col-md-3">
+                    <div class="card border-primary mb-3 text-center bg-info rounded-3" >
+                        <div class="card-header  fs-4 text-light">Total Publishers</div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['publishers']?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <div class="card border-primary mb-3 text-center bg-info rounded-5" style="max-width: 18rem;">
-                        <div class="card-header  fs-4  text-light">All Writter </div>
+                <div class="col-md-3">
+                    <div class="card border-primary mb-3 text-center bg-info rounded-3" >
+                        <div class="card-header  fs-4  text-light">Total Writter </div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text text-dark fs-4"><?= $arr['writers']?> </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-            </div>
+                </div>
             <!-- third row -->
             <!-- <div class="row">
                 <div class="col-2"></div>
                 <div class="col-3">
-                    <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
-                        <div class="card-header">All Division</div>
+                    <div class="card border-primary mb-3 text-center" >
+                        <div class="card-header">Total Division</div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text"><?= $arr['division']?></p>
@@ -75,8 +66,8 @@ require "./get_count.php";
                 </div>
                 <div class="col-2"></div>
                 <div class="col-3">
-                    <div class="card border-primary mb-3 text-center" style="max-width: 18rem;">
-                        <div class="card-header">All District </div>
+                    <div class="card border-primary mb-3 text-center" >
+                        <div class="card-header">Total District </div>
                         <div class="card-body text-primary">
                             <h5 class="card-title">Count</h5>
                             <p class="card-text"><?= $arr['district']?> </p>

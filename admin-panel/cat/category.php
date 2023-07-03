@@ -16,6 +16,7 @@
             <label for="categoryName" class="form-label">Name</label>
             <input type="text" class="form-control" id="categoryName" name="categoryName" required>
           </div>
+          
           <div class="mb-3">
             <label for="categoryDescription" class="form-label">Description</label>
             <textarea class="form-control" id="categoryDescription" name="categoryDescription" rows="3" required></textarea>
