@@ -54,29 +54,29 @@ if (isset($_SESSION['user_id'])) {
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0.min.js"></script>
-    <script src="assets/js/jquery-3.7.0.min.js"></script>
-    <style>
-      #navbrand{
-        max-width: 200px;
-            max-height: 120px;
-            object-fit: cover;
-      }
-    </style>
+  <script src="assets/js/jquery-3.7.0.min.js"></script>
+  <style>
+    #navbrand {
+      max-width: 200px;
+      max-height: 120px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
-        <div class="container-fluid">
-            <a style="margin-left: 4rem;" class="navbar-brand" href="#">
-                <img id="navbrand" src="assets/images/logo.png" alt="Logo">
-            </a>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white ms-5" aria-current="page" href="homee.php">Home</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
+    <div class="container-fluid">
+      <a style="margin-left: 4rem;" class="navbar-brand" href="#">
+        <img id="navbrand" src="assets/images/logo.png" alt="Logo">
+      </a>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white ms-5" aria-current="page" href="homee.php">Home</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
   <div class="container mt-5">
     <div class="row">
@@ -99,7 +99,7 @@ if (isset($_SESSION['user_id'])) {
                 <p><?php echo $about; ?></p>
               <?php endif; ?>
             </div>
-            
+
             <a href="#editProfileModal" class="btn btn-primary text-end" data-bs-toggle="modal">Edit Profile</a>
             <a href="#postModal" class="btn btn-primary text-end" data-bs-toggle="modal">Post</a>
             <a class="nav-link mt-5" href="#" id="logoutBtn">Logout</a>
@@ -118,59 +118,55 @@ if (isset($_SESSION['user_id'])) {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="card mt-3">
-            <div class="card-header">Update your profile</div>
-            <div class="card-body">
-              <form id="profileForm" enctype="multipart/form-data">
-                <input type="hidden" id="userid" name="userid" value="<?php echo $_SESSION['user_id']; ?>">
-                <div class="mb-3">
-                  <label for="image" class="form-label">Image</label>
-                  <input type="file" class="form-control" id="image" name="image">
-                </div>
-                <div class="mb-3">
-                  <label for="division" class="form-label">Division</label>
-                  <select class="form-select" id="division" name="division" required>
-                    <option value="">Select Division</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="district" class="form-label">District</label>
-                  <select class="form-select" id="district" name="district" required>
-                    <option value="">Select District</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="area" class="form-label">Area</label>
-                  <select class="form-control" id="area" name="area" required>
-                    <option value="">Select Area</option>
-                    <!-- Area options will be populated dynamically -->
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="address" class="form-label">Address</label>
-                  <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="phone" class="form-label">Phone</label>
-                  <input type="text" class="form-control" id="phone" name="phone" required>
-                </div>
-                <div class="mb-3">
-                  <label for="bio" class="form-label">Bio</label>
-                  <textarea class="form-control" id="bio" name="bio" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="excerpt" class="form-label">Excerpt</label>
-                  <textarea class="form-control" id="excerpt" name="excerpt" rows="2" required></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="dob" class="form-label">Date of Birth</label>
-                  <input type="date" class="form-control" id="dob" name="dob" required>
-                </div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-              </form>
+
+          <form id="profileForm" enctype="multipart/form-data">
+            <input type="hidden" id="userid" name="userid" value="<?php echo $_SESSION['user_id']; ?>">
+            <div class="mb-3">
+              <label for="image" class="form-label">Image</label>
+              <input type="file" class="form-control" id="image" name="image">
             </div>
-          </div>
+            <div class="mb-3">
+              <label for="division" class="form-label">Division</label>
+              <select class="form-select" id="division" name="division" required>
+                <option value="">Select Division</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="district" class="form-label">District</label>
+              <select class="form-select" id="district" name="district" required>
+                <option value="">Select District</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="area" class="form-label">Area</label>
+              <select class="form-control" id="area" name="area" required>
+                <option value="">Select Area</option>
+                <!-- Area options will be populated dynamically -->
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="bio" class="form-label">Bio</label>
+              <textarea class="form-control" id="bio" name="bio" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="excerpt" class="form-label">Excerpt</label>
+              <textarea class="form-control" id="excerpt" name="excerpt" rows="2" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="dob" class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" id="dob" name="dob" required>
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </form>
         </div>
       </div>
     </div>
@@ -198,102 +194,102 @@ if (isset($_SESSION['user_id'])) {
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
   <script>
-        $(document).ready(function() {
-            // Populate divisions dropdown
-            $.ajax({
-                url: "get_divisions.php",
-                type: "POST",
-                dataType: "json",
-                success: function(data) {
-                    if (data.success) {
-                        var options = "";
-                        $.each(data.divisions, function(index, division) {
-                            options += "<option value='" + division.divid + "'>" + division.divname + "</option>";
-                        });
-                        $("#division").html(options);
-                    }
-                }
+    $(document).ready(function() {
+      // Populate divisions dropdown
+      $.ajax({
+        url: "get_divisions.php",
+        type: "POST",
+        dataType: "json",
+        success: function(data) {
+          if (data.success) {
+            var options = "";
+            $.each(data.divisions, function(index, division) {
+              options += "<option value='" + division.divid + "'>" + division.divname + "</option>";
             });
+            $("#division").html(options);
+          }
+        }
+      });
 
-            // Populate districts dropdown based on selected division
-            $("#division").change(function() {
-                var divisionId = $(this).val();
-                $.ajax({
-                    url: "get_districts.php",
-                    type: "POST",
-                    data: {
-                        divid: divisionId
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        if (data.success) {
-                            var options = "";
-                            $.each(data.districts, function(index, district) {
-                                options += "<option value='" + district.distid + "'>" + district.distname + "</option>";
-                            });
-                            $("#district").html(options);
-                        }
-                    }
-                });
-            });
-
-            // Populate area dropdown based on selected district
-            $('#district').change(function() {
-                var districtId = $(this).val();
-
-                // Send AJAX request to get areas
-                $.ajax({
-                    url: 'get_areas.php',
-                    type: 'POST',
-                    data: {
-                        districtId: districtId
-                    },
-                    success: function(response) {
-                        // Populate area dropdown with options
-                        $('#area').html(response);
-                    }
-                });
-            });
-
-            // Submit profile form
-            $('#profileForm').on('submit', function(e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-
-                $.ajax({
-                    url: 'save_profile.php',
-                    type: 'POST',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(response) {
-                        // Handle success or error response
-                        alert(response);
-                    }
-                });
-            });
-            $('#logoutBtn').on('click', function(e) {
-                e.preventDefault(); // Prevent default link behavior
-
-                // Display SweetAlert confirmation dialog
-                Swal.fire({
-                    title: 'Logout',
-                    text: 'Are you sure you want to logout?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Logout',
-                    cancelButtonText: 'Cancel'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Redirect to the logout page
-                        window.location.href = 'logout.php';
-                    }
-                });
-            });
+      // Populate districts dropdown based on selected division
+      $("#division").change(function() {
+        var divisionId = $(this).val();
+        $.ajax({
+          url: "get_districts.php",
+          type: "POST",
+          data: {
+            divid: divisionId
+          },
+          dataType: "json",
+          success: function(data) {
+            if (data.success) {
+              var options = "";
+              $.each(data.districts, function(index, district) {
+                options += "<option value='" + district.distid + "'>" + district.distname + "</option>";
+              });
+              $("#district").html(options);
+            }
+          }
         });
-    </script>
+      });
+
+      // Populate area dropdown based on selected district
+      $('#district').change(function() {
+        var districtId = $(this).val();
+
+        // Send AJAX request to get areas
+        $.ajax({
+          url: 'get_areas.php',
+          type: 'POST',
+          data: {
+            districtId: districtId
+          },
+          success: function(response) {
+            // Populate area dropdown with options
+            $('#area').html(response);
+          }
+        });
+      });
+
+      // Submit profile form
+      $('#profileForm').on('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+
+        $.ajax({
+          url: 'save_profile.php',
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function(response) {
+            // Handle success or error response
+            alert(response);
+          }
+        });
+      });
+      $('#logoutBtn').on('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+
+        // Display SweetAlert confirmation dialog
+        Swal.fire({
+          title: 'Logout',
+          text: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'Logout',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Redirect to the logout page
+            window.location.href = 'logout.php';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
