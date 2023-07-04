@@ -1,20 +1,36 @@
 <?php
+// require '../../DB/db.php'; 
+
+// $sql = "SELECT * FROM categories"; 
+// $result = mysqli_query($conn, $sql);
+
+// $options = '';
+// while ($row = mysqli_fetch_assoc($result)) {
+//     $categoryId = $row['id'];
+//     $categoryName = $row['name'];
+
+//     $options .= "<option value='$categoryId'>$categoryName</option>";
+// }
+
+// mysqli_close($conn);
+
+// echo $options;
+?>
+<?php
 require '../../DB/db.php';
-// $conn =new mysqli("localhost","root","","publiclibrary");
 
-$sql = "SELECT * FROM categories";
-// $result = mysqli_query($connection, $sql);
-$result = mysqli_query($conn, $sql);
+// Retrieve divisions from the database
+$query = "SELECT * FROM categories";
+$result = mysqli_query($conn, $query);
 
-$options = '';
-while ($row = mysqli_fetch_assoc($result)) {
-    $categoryId = $row['id'];
-    $categoryName = $row['name'];
+if ($result) {
+    $divisions = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $categories[] = $row;
+    }
 
-    $options .= "<option value='$categoryId'>$categoryName</option>";
+    echo json_encode(array('success' => true, 'categories' => $categories));
+} else {
+    echo json_encode(array('success' => false));
 }
-
-mysqli_close($conn);
-
-echo $options;
 ?>

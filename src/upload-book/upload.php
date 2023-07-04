@@ -25,7 +25,7 @@
         <div class="card">
             <div class="card-header">Book Upload Now</div>
             <div class="card-body">
-                <form id="registrationForm" action="" method="post">
+                <form id="upload_book" action="" >
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" required>
