@@ -2,19 +2,19 @@
 require '../../DB/db.php';
 // $conn =new mysqli("localhost","root","","publiclibrary");
 
-$sql = "SELECT * FROM categories";
+$sql = "SELECT * FROM publishers";
 // $result = mysqli_query($connection, $sql);
 $result = mysqli_query($conn, $sql);
 
 $options = '';
 while ($row = mysqli_fetch_assoc($result)) {
-    $categoryId = $row['id'];
-    $categoryName = $row['name'];
+    $publisherId = $row['id'];
+    $publisherName = $row['name'];
 
-    $options .= "<option value='$categoryId'>$categoryName</option>";
+    $publisher .= "<option value='$publisherId'>$publisherName</option>";
 }
 
 mysqli_close($conn);
 
-echo $options;
+echo $publisher;
 ?>

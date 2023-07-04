@@ -2,19 +2,19 @@
 require '../../DB/db.php';
 // $conn =new mysqli("localhost","root","","publiclibrary");
 
-$sql = "SELECT * FROM categories";
+$sql = "SELECT * FROM writers";
 // $result = mysqli_query($connection, $sql);
 $result = mysqli_query($conn, $sql);
 
 $options = '';
 while ($row = mysqli_fetch_assoc($result)) {
-    $categoryId = $row['id'];
-    $categoryName = $row['name'];
+    $WriterId = $row['id'];
+    $WriterName = $row['name'];
 
-    $options .= "<option value='$categoryId'>$categoryName</option>";
+    $writer .= "<option value='$WriterId'>$WriterName</option>";
 }
 
 mysqli_close($conn);
 
-echo $options;
+echo $writer;
 ?>

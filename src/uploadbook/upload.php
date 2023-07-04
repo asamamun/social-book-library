@@ -87,7 +87,7 @@
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/css/bootstrap.min.css"></script>
     <!-- jQuery -->
     <script src="./../../assets/js/jquery-3.7.0.min.js"></script>
 
