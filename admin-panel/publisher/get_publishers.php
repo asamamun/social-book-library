@@ -11,7 +11,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<td>" . $row['address'] . "</td>";
         echo "<td>" . $row['phone'] . "</td>";
         echo "<td>";
-        echo "<button class='btn btn-primary edit-publisher' data-id='" . $row['id'] . "' data-name='" . $row['name'] . "' data-address='" . $row['address'] . "' data-phone='" . $row['phone'] . "'>Edit</button>";
+        echo "<button class='btn btn-primary me-1 edit-publisher' data-id='" . $row['id'] . "' data-name='" . $row['name'] . "' data-address='" . $row['address'] . "' data-phone='" . $row['phone'] . "'>Edit</button>";
         echo "<button class='btn btn-danger delete-publisher' data-id='" . $row['id'] . "'>Delete</button>";
         echo "</td>";
         echo "</tr>";

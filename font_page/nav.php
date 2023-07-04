@@ -272,6 +272,7 @@
             <li><i class="bi bi-telephone-fill"></i> +1 234 567 890</li>
             <li><i class="bi bi-envelope-fill"></i> info@example.com</li>
           </ul>
+          
         </div>
         <div class="col-lg-4">
           <h5>Follow Us</h5>
@@ -300,6 +301,7 @@
         </div>
       </div>
     </div>
+
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
