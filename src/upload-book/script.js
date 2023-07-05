@@ -43,7 +43,7 @@ $(document).ready(function() {
             success: function(response) {
                 alert(response);
                 $('#upload_book')[0].reset();
-                loadSubcategories();
+                // loadSubcategories();
             }
         });
     });
