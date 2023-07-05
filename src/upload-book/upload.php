@@ -70,6 +70,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="user" class="form-label">User ID</label>
+                        <input type="text" class="form-control" id="user" name="user">
+                        <small id="sellpriceError" class="form-text text-danger"></small>
+                    </div>
+                    <div class="mb-3">
                         <label for="edition" class="form-label">Edition</label>
                         <input type="text" class="form-control" id="edition" name="edition">
                         <small id="sellpriceError" class="form-text text-danger"></small>
@@ -79,7 +84,8 @@
                         <input type="text" class="form-control" id="location" name="location">
                         <small id="sellpriceError" class="form-text text-danger"></small>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Register</button>
+                    <input type="submit" name="submit" value="register" class="btn btn-primary">
+
                 </form>
                 <div id="registrationMessage" class="mt-3"></div>
             </div>

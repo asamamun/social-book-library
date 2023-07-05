@@ -31,18 +31,21 @@ $(document).ready(function() {
     // add-upload-book 
 
     $('#upload_book').submit(function(e) {
+        // console.log(this);
         e.preventDefault();
         var formData = new FormData(this);
-
+        // console.log(formData);
+        // return;
         $.ajax({
             type: 'POST',
             url: 'insart.info.php',
-            data: formData,
+            data:formData,
             contentType: false,
             processData: false,
             success: function(response) {
-                alert(response);
-                $('#upload_book')[0].reset();
+                // alert(response);
+                console.log(response);
+                // $('#upload_book')[0].reset();
                 // loadSubcategories();
             }
         });
