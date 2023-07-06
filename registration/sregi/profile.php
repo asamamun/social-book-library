@@ -61,6 +61,20 @@ if (isset($_SESSION['user_id'])) {
       max-height: 120px;
       object-fit: cover;
     }
+    .book-card {
+            display: flex;
+        }
+
+        .book-card .book-cover {
+            width: 200px;
+            height: 200px;
+            flex: 0 0 auto;
+            margin-right: 20px;
+        }
+
+        .book-card .book-details {
+            flex: 1 1 auto;
+        }
   </style>
 </head>
 
@@ -101,10 +115,54 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <a href="#editProfileModal" class="btn btn-primary text-end" data-bs-toggle="modal">Edit Profile</a>
-            <a href="#postModal" class="btn btn-primary text-end" data-bs-toggle="modal">Post</a>
+            <!-- Button to trigger the modal -->
+            <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#registrationModal">
+              POST YOUR BOOK
+            </button>
             <a class="nav-link mt-5" href="#" id="logoutBtn">Logout</a>
           </div>
         </div>
+      </div>
+
+
+      <div id="bookCardContainer">
+        <?php
+        // Check if the user is logged in
+        if (isset($_SESSION['user_id'])) {
+          $user_id = $_SESSION['user_id'];
+
+          // Connect to the database
+          $servername = "localhost";
+          $username = "root";
+          $password = "";
+          $dbname = "publiclibrary";
+          $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+          // Retrieve book details for the logged-in user from the database
+          $stmt = $db->prepare("SELECT * FROM books WHERE user_id = :user_id");
+          $stmt->bindParam(':user_id', $user_id);
+          $stmt->execute();
+
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="col-md-6 offset-md-3 mt-4">
+                            <div class="card">
+                            <div class="card-header">' . $row['name'] . '</div>
+                                <div class="card-body">
+                                    <p class="card-text">Location: ' . $row['location'] . '</p>
+                                    <p class="card-text">Price: ' . $row['price'] . '</p>
+                                    <p class="card-text">Selling Price: ' . $row['sellprice'] . '</p>
+                                    <p class="card-text">Time: ' . date('Y-m-d H:i:s', strtotime($row['created_at'])) . '</p>
+                                    <div class="text-end">
+                                    <a href="view_book.php?book_id=' . $row['id'] . '" class="btn btn-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>';
+          }
+        } else {
+          echo '<p>Please log in to view your books.</p>';
+        }
+        ?>
       </div>
     </div>
   </div>
@@ -114,78 +172,161 @@ if (isset($_SESSION['user_id'])) {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-
-          <form id="profileForm" enctype="multipart/form-data">
-            <input type="hidden" id="userid" name="userid" value="<?php echo $_SESSION['user_id']; ?>">
-            <div class="mb-3">
-              <label for="image" class="form-label">Image</label>
-              <input type="file" class="form-control" id="image" name="image">
-            </div>
-            <div class="mb-3">
-              <label for="division" class="form-label">Division</label>
-              <select class="form-select" id="division" name="division" required>
-                <option value="">Select Division</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="district" class="form-label">District</label>
-              <select class="form-select" id="district" name="district" required>
-                <option value="">Select District</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="area" class="form-label">Area</label>
-              <select class="form-control" id="area" name="area" required>
-                <option value="">Select Area</option>
-                <!-- Area options will be populated dynamically -->
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="address" class="form-label">Address</label>
-              <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="phone" class="form-label">Phone</label>
-              <input type="text" class="form-control" id="phone" name="phone" required>
-            </div>
-            <div class="mb-3">
-              <label for="bio" class="form-label">Bio</label>
-              <textarea class="form-control" id="bio" name="bio" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="excerpt" class="form-label">Excerpt</label>
-              <textarea class="form-control" id="excerpt" name="excerpt" rows="2" required></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="dob" class="form-label">Date of Birth</label>
-              <input type="date" class="form-control" id="dob" name="dob" required>
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-          </form>
+        <div class="card">
+          <div class="card-header">Update your profile</div>
+          <div class="card-body">
+            <form id="profileForm" enctype="multipart/form-data">
+              <input type="hidden" id="userid" name="userid" value="<?php echo $_SESSION['user_id']; ?>">
+              <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image">
+              </div>
+              <div class="mb-3">
+                <label for="division" class="form-label">Division</label>
+                <select class="form-select" id="division" name="division" required>
+                  <option value="">Select Division</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="district" class="form-label">District</label>
+                <select class="form-select" id="district" name="district" required>
+                  <option value="">Select District</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="area" class="form-label">Area</label>
+                <select class="form-control" id="area" name="area" required>
+                  <option value="">Select Area</option>
+                  <!-- Area options will be populated dynamically -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" required>
+              </div>
+              <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea class="form-control" id="bio" name="bio" rows="3" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="excerpt" class="form-label">Excerpt</label>
+                <textarea class="form-control" id="excerpt" name="excerpt" rows="2" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" name="dob" required>
+              </div>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Post Modal -->
-  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+  <!-- Book post Modal -->
+  <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="postModalLabel">New Post</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <!-- Post form goes here -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Post</button>
+        <div class="card">
+          <div class="card-header">Post your book now</div>
+          <div class="card-body">
+            <form id="bookForm" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="name" class="form-label">Book Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+              </div>
+              <div class="mb-3">
+                <label for="sellprice" class="form-label">Sell Price</label>
+                <input type="number" class="form-control" id="sellprice" name="sellprice" required>
+              </div>
+              <div class="mb-3">
+                <label for="edition" class="form-label">Edition</label>
+                <input type="text" class="form-control" id="edition" name="edition" required>
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+              </div>
+              <div class="mb-3">
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-control" id="category_id" name="category_id" required>
+                  <option value="">Select Category</option>
+                  <?php
+                  // Connect to the database
+                  $servername = "localhost";
+                  $username = "root";
+                  $password = "";
+                  $dbname = "publiclibrary";
+                  $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+                  // Retrieve categories from the database
+                  $stmt = $db->query("SELECT * FROM categories");
+                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="subcategory_id" class="form-label">Subcategory</label>
+                <select class="form-control" id="subcategory_id" name="subcategory_id" required>
+                  <option value="">Select Subcategory</option>
+                  <!-- Populate options using jQuery Ajax after category selection -->
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="writer_id" class="form-label">Writer</label>
+                <select class="form-control" id="writer_id" name="writer_id" required>
+                  <option value="">Select Writer</option>
+                  <?php
+                  // Retrieve writers from the database
+                  $stmt = $db->query("SELECT * FROM writers");
+                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="publisher_id" class="form-label">Publisher</label>
+                <select class="form-control" id="publisher_id" name="publisher_id" required>
+                  <option value="">Select Publisher</option>
+                  <?php
+                  // Retrieve publishers from the database
+                  $stmt = $db->query("SELECT * FROM publishers");
+                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image" required>
+              </div>
+              <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+              <button type="submit" class="btn btn-primary">Post Now</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -265,6 +406,7 @@ if (isset($_SESSION['user_id'])) {
           success: function(response) {
             // Handle success or error response
             alert(response);
+            window.location.href = 'profile.php';
           }
         });
       });
@@ -288,6 +430,50 @@ if (isset($_SESSION['user_id'])) {
           }
         });
       });
+      // Populate subcategories based on selected category
+      $('#category_id').change(function() {
+        var categoryId = $(this).val();
+
+        // Make Ajax request
+        $.ajax({
+          url: 'get_subcategories.php',
+          type: 'POST',
+          data: {
+            category_id: categoryId
+          },
+          success: function(response) {
+            $('#subcategory_id').html(response);
+          },
+          error: function(xhr, status, error) {
+            alert('Error retrieving subcategories: ' + error);
+          }
+        });
+      });
+
+      // Submit the form using Ajax
+      $('#bookForm').submit(function(event) {
+        event.preventDefault();
+
+        // Serialize form data
+        var formData = new FormData(this);
+
+        // Make Ajax request
+        $.ajax({
+          url: 'save_book.php',
+          type: 'POST',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            alert('Book saved successfully!');
+            window.location.href = 'profile.php';
+          },
+          error: function(xhr, status, error) {
+            alert('Error saving book: ' + error);
+          }
+        });
+      });
+
     });
   </script>
 </body>

@@ -8,7 +8,7 @@ $options = '';
 while ($row = mysqli_fetch_assoc($result)) {
     $categoryId = $row['id'];
     $categoryName = $row['name'];
-
+    
     $options .= "<option value='$categoryId'>$categoryName</option>";
 }
 

@@ -67,7 +67,7 @@ session_start();
                                             // Check if session variable is set for the profile picture
                                             if (isset($_SESSION['profilepic'])) {
                                                 $profilePic = $_SESSION['profilepic'];
-                                                echo '<img src="' . $profilePic . '" style="width: 40px; height: 40px; margin-top: -8px" class="img-fluid rounded-circle" alt="Profile Picture">';
+                                                echo '<img src="' . $profilePic . '" style="width: 30px; height: 30px;" class="img-fluid rounded-circle" alt="Profile Picture">';
                                             } else {
                                                 echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
                                                 <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
@@ -75,13 +75,13 @@ session_start();
                                             </svg>';
                                             }
                                             ?>
-                                           </a>
+                                        </a>
                                     </li>
                                 <?php else : ?>
                                     <!-- User is not logged in, show login anchor link -->
                                     <li class="nav-item px-4 ">
                                         <a class="nav-link active" href="login.php">Login</a>
-                                    </li> 
+                                    </li>
                                     <li class="nav-item px-4 ">
                                         <a class="nav-link active" href="register.php">Registration</a>
                                     </li>
@@ -113,20 +113,20 @@ session_start();
                                     <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
                                         <!-- User is logged in, show profile anchor link -->
                                         <li class="nav-item px-4">
-                                        <a class="nav-link active" href="profile.php">
-                                            <?php
-                                            // Check if session variable is set for the profile picture
-                                            if (isset($_SESSION['profilepic'])) {
-                                                $profilePic = $_SESSION['profilepic'];
-                                                echo '<img src="' . $profilePic . '" style="width: 40px; height: 40px class="img-fluid rounded-circle" alt="Profile Picture">';
-                                            } else {
-                                                echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                                            <a class="nav-link active" href="profile.php">
+                                                <?php
+                                                // Check if session variable is set for the profile picture
+                                                if (isset($_SESSION['profilepic'])) {
+                                                    $profilePic = $_SESSION['profilepic'];
+                                                    echo '<img src="' . $profilePic . '" style="width: 30px; height: 30px;" class="img-fluid rounded-circle" alt="Profile Picture">';
+                                                } else {
+                                                    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
                                                 <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
                                                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                                             </svg>';
-                                            }
-                                            ?>
-                                           </a>
+                                                }
+                                                ?>
+                                            </a>
                                         </li>
                                     <?php else : ?>
                                         <!-- User is not logged in, show login anchor link -->
@@ -210,7 +210,7 @@ session_start();
                     $cards .= '<div class="card mb-5">';
                     $cards .= '  <div class="card-header text-white bg-success">' . $row['name'] . '</div>';
                     $cards .= '  <div class="card-body">';
-                    $cards .= '<img src="' . $row['image'] . '" class="card-img-top" alt="Category Image">';
+                    $cards .= '    <img src="' . $row['image'] . '" class="card-img-top" alt="Category Image">';
                     $cards .= '<div class="text-end">';
                     $cards .= '    <a href="view_category.php?id=' . $row['id'] . '" class="btn btn-primary">View</a>';
                     $cards .= '  </div>';
@@ -240,25 +240,97 @@ session_start();
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registrationModalLabel">User Registration</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </form>
+                <div class="card">
+                    <div class="card-header">Post your book now</div>
+                    <div class="card-body">
+                        <form id="bookForm" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Book Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sellprice" class="form-label">Sell Price</label>
+                                <input type="number" class="form-control" id="sellprice" name="sellprice" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edition" class="form-label">Edition</label>
+                                <input type="text" class="form-control" id="edition" name="edition" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location" name="location" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category_id" class="form-label">Category</label>
+                                <select class="form-control" id="category_id" name="category_id" required>
+                                    <option value="">Select Category</option>
+                                    <?php
+                                    // Connect to the database
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "publiclibrary";
+                                    $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+                                    // Retrieve categories from the database
+                                    $stmt = $db->query("SELECT * FROM categories");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subcategory_id" class="form-label">Subcategory</label>
+                                <select class="form-control" id="subcategory_id" name="subcategory_id" required>
+                                    <option value="">Select Subcategory</option>
+                                    <!-- Populate options using jQuery Ajax after category selection -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="writer_id" class="form-label">Writer</label>
+                                <select class="form-control" id="writer_id" name="writer_id" required>
+                                    <option value="">Select Writer</option>
+                                    <?php
+                                    // Retrieve writers from the database
+                                    $stmt = $db->query("SELECT * FROM writers");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="publisher_id" class="form-label">Publisher</label>
+                                <select class="form-control" id="publisher_id" name="publisher_id" required>
+                                    <option value="">Select Publisher</option>
+                                    <?php
+                                    // Retrieve publishers from the database
+                                    $stmt = $db->query("SELECT * FROM publishers");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="image" name="image" required>
+                            </div>
+                            <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                            <button type="submit" class="btn btn-primary">Post Now</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -341,6 +413,50 @@ session_start();
         $(document).ready(function() {
             // Initialize the carousel
             $('.carousel').carousel();
+
+            // Populate subcategories based on selected category
+            $('#category_id').change(function() {
+                var categoryId = $(this).val();
+
+                // Make Ajax request
+                $.ajax({
+                    url: 'get_subcategories.php',
+                    type: 'POST',
+                    data: {
+                        category_id: categoryId
+                    },
+                    success: function(response) {
+                        $('#subcategory_id').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error retrieving subcategories: ' + error);
+                    }
+                });
+            });
+
+            // Submit the form using Ajax
+            $('#bookForm').submit(function(event) {
+                event.preventDefault();
+
+                // Serialize form data
+                var formData = new FormData(this);
+
+                // Make Ajax request
+                $.ajax({
+                    url: 'save_book.php',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        alert('Book saved successfully!');
+                        window.location.href = 'homee.php';
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error saving book: ' + error);
+                    }
+                });
+            });
         });
     </script>
 </body>
