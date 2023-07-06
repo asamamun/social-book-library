@@ -46,7 +46,7 @@ session_start();
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <!-- site title  -->
-                        <a class="navbar-brand ms-5" href="#"><img src="assets/images/logo.png" alt="logo"></a>
+                        <a class="navbar-brand ms-5" href="homee.php"><img src="assets/images/logo.png" alt="logo"></a>
                         <div class="d-none d-lg-block">
                             <a class="nav-link active text-light" href="#">All books</a>
                         </div>
@@ -87,6 +87,23 @@ session_start();
                                     </li>
                                 <?php endif; ?>
                                 <li class="nav-item px-4 me-5">
+                                <?php
+// Check if user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    echo "
+
+    <script>
+      Swal.fire({
+        icon: 'error',
+        title: 'Not a registered user',
+        text: 'You need to be a registered user to perform this action.',
+        confirmButtonText: 'OK'
+      });
+    </script>
+    ";
+}
+?>
+
                                     <!-- Button to trigger the modal -->
                                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#registrationModal">
                                         POST YOUR BOOK
@@ -235,6 +252,7 @@ session_start();
     </main>
 
     </div>
+
     <!-- Book post Modal -->
     <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
         <div class="modal-dialog">
