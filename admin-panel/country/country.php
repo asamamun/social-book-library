@@ -12,8 +12,8 @@
 <body>
 
     <body>
-        <div class="container mt-5"> 
-                        <div class="card">
+        <div class="container mt-5">
+            <div class="card">
                 <div class="card-header">Add Country</div>
                 <div class="card-body">
                     <form id="addCountryForm">

@@ -16,7 +16,7 @@
             <label for="categoryName" class="form-label">Name</label>
             <input type="text" class="form-control" id="categoryName" name="categoryName" required>
           </div>
-
+          
           <div class="mb-3">
             <label for="categoryDescription" class="form-label">Description</label>
             <textarea class="form-control" id="categoryDescription" name="categoryDescription" rows="3" required></textarea>
@@ -29,6 +29,7 @@
         </form>
       </div>
     </div>
+
     <div class="card mt-4">
       <div class="card-header">Manage Categories</div>
       <div class="card-body">
@@ -57,7 +58,7 @@
           </div>
           <div class="modal-body">
             <form id="editCategoryForm" enctype="multipart/form-data">
-              <div class="mb-3">  
+              <div class="mb-3">
                 <label for="editCategoryName" class="form-label">Name</label>
                 <input type="text" class="form-control" id="editCategoryName" name="editCategoryName" required>
               </div>

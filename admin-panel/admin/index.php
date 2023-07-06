@@ -106,7 +106,7 @@
   <div class="sidebar">
     <ul class="nav flex-column">
       <li style="margin-top: 5rem;" class="nav-item">
-        <a class="nav-link" href="dashboard/dashboard.php" data-page="../dashboard/dashboard.php"><b style="font-size:larger;">Dashboard</b></a>
+        <a class="nav-link" href="../dashboard/dashboard.php" data-page="../dashboard/dashboard.php"><b style="font-size:larger;">Dashboard</b></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="" data-page="">Admin</a>
@@ -124,10 +124,7 @@
         <a class="nav-link" href="../country/country.php" data-page="../country/country.php">Country</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="../district/district.php" data-page="../district/district.php">District</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../area/area.php" data-page="../area/area.php">Area</a>
+        <a class="nav-link" href="../district/district.php" data-page="../district/district.php">district</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../publisher/publisher.php" data-page="../publisher/publisher.php">Publisher</a>
