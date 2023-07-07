@@ -357,6 +357,7 @@ if (isset($_SESSION['user_id'])) {
                 <input type="file" class="form-control" id="image" name="image" required>
               </div>
               <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-primary">Post Now</button>
             </form>
           </div>

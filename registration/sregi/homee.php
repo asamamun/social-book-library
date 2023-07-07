@@ -11,6 +11,7 @@ session_start();
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.14/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
@@ -87,10 +88,8 @@ session_start();
                                     </li>
                                 <?php endif; ?>
                                 <li class="nav-item px-4 me-5">
-                                    <!-- Button to trigger the modal -->
-                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#registrationModal">
-                                        POST YOUR BOOK
-                                    </button>
+                                    <!-- Button to trigger the action -->
+                                    <button type="button" class="btn btn-warning" id="postButton">POST YOUR BOOK</button>
                                 </li>
                             </ul>
                         </div>
@@ -118,7 +117,7 @@ session_start();
                                                 // Check if session variable is set for the profile picture
                                                 if (isset($_SESSION['profilepic'])) {
                                                     $profilePic = $_SESSION['profilepic'];
-                                                    echo '<img src="' . $profilePic . '" style="width: 30px; height: 30px;" class="img-fluid rounded-circle" alt="Profile Picture">';
+                                                    echo '<img src="' . $profilePic . '" style="width: 40px; height: 40px; margin-left: -5px;" class="img-fluid rounded-circle" alt="Profile Picture">';
                                                 } else {
                                                     echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
                                                 <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
@@ -138,10 +137,8 @@ session_start();
                                         </li>
                                     <?php endif; ?>
                                     <li class="nav-item mb-3">
-                                        <!-- Button to trigger the modal -->
-                                        <button type="button" class="btn btn-warning mt-4" data-bs-toggle="modal" data-bs-target="#registrationModal">
-                                            POST YOUR BOOK
-                                        </button>
+                                        <!-- Button to trigger the action -->
+                                        <button type="button" class="btn btn-warning mt-4" id="postButton">POST YOUR BOOK</button>
                                     </li>
                                 </ul>
                             </div>
@@ -235,106 +232,108 @@ session_start();
     </main>
 
     </div>
-   <!-- Book post Modal -->
-  <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="card">
-          <div class="card-header">Post your book now</div>
-          <div class="card-body">
-            <form id="bookForm" method="post" enctype="multipart/form-data">
-              <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" required></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price" required>
-              </div>
-              <div class="mb-3">
-                <label for="sellprice" class="form-label">Sell Price</label>
-                <input type="number" class="form-control" id="sellprice" name="sellprice" required>
-              </div>
-              <div class="mb-3">
-                <label for="edition" class="form-label">Edition</label>
-                <input type="text" class="form-control" id="edition" name="edition" required>
-              </div>
-              <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
-                <input type="text" class="form-control" id="location" name="location" required>
-              </div>
-              <div class="mb-3">
-                <label for="category_id" class="form-label">Category</label>
-                <select class="form-control" id="category_id" name="category_id" required>
-                  <option value="">Select Category</option>
-                  <?php
-                  // Connect to the database
-                  $servername = "localhost";
-                  $username = "root";
-                  $password = "";
-                  $dbname = "publiclibrary";
-                  $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    <!-- Book post Modal -->
+    <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="card">
+                    <div class="card-header">Post your book now</div>
+                    <div class="card-body">
+                        <form id="bookForm" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sellprice" class="form-label">Sell Price</label>
+                                <input type="number" class="form-control" id="sellprice" name="sellprice" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="edition" class="form-label">Edition</label>
+                                <input type="text" class="form-control" id="edition" name="edition" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location" name="location" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="category_id" class="form-label">Category</label>
+                                <select class="form-control" id="category_id" name="category_id" required>
+                                    <option value="">Select Category</option>
+                                    <?php
+                                    // Connect to the database
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "publiclibrary";
+                                    $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-                  // Retrieve categories from the database
-                  $stmt = $db->query("SELECT * FROM categories");
-                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                  }
-                  ?>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="subcategory_id" class="form-label">Subcategory</label>
-                <select class="form-control" id="subcategory_id" name="subcategory_id" required>
-                  <option value="">Select Subcategory</option>
-                  <!-- Populate options using jQuery Ajax after category selection -->
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="writer_id" class="form-label">Writer</label>
-                <select class="form-control" id="writer_id" name="writer_id" required>
-                  <option value="">Select Writer</option>
-                  <?php
-                  // Retrieve writers from the database
-                  $stmt = $db->query("SELECT * FROM writers");
-                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                  }
-                  ?>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="publisher_id" class="form-label">Publisher</label>
-                <select class="form-control" id="publisher_id" name="publisher_id" required>
-                  <option value="">Select Publisher</option>
-                  <?php
-                  // Retrieve publishers from the database
-                  $stmt = $db->query("SELECT * FROM publishers");
-                  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                  }
-                  ?>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" id="image" name="image" required>
-              </div>
-              <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
-              <button type="submit" class="btn btn-primary">Post Now</button>
-            </form>
-          </div>
+                                    // Retrieve categories from the database
+                                    $stmt = $db->query("SELECT * FROM categories");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subcategory_id" class="form-label">Subcategory</label>
+                                <select class="form-control" id="subcategory_id" name="subcategory_id" required>
+                                    <option value="">Select Subcategory</option>
+                                    <!-- Populate options using jQuery Ajax after category selection -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="writer_id" class="form-label">Writer</label>
+                                <select class="form-control" id="writer_id" name="writer_id" required>
+                                    <option value="">Select Writer</option>
+                                    <?php
+                                    // Retrieve writers from the database
+                                    $stmt = $db->query("SELECT * FROM writers");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="publisher_id" class="form-label">Publisher</label>
+                                <select class="form-control" id="publisher_id" name="publisher_id" required>
+                                    <option value="">Select Publisher</option>
+                                    <?php
+                                    // Retrieve publishers from the database
+                                    $stmt = $db->query("SELECT * FROM publishers");
+                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                        echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="image" name="image" required>
+                            </div>
+                            <input type="hidden" id="user_id" name="user_id" value="<?php echo $_SESSION['user_id']; ?>">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Post Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
 
     <!-- Scrollable Modal -->
     <div class="modal fade" id="scrollModal" tabindex="-1" aria-labelledby="scrollModalLabel" aria-hidden="true">
@@ -409,7 +408,36 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery-3.7.0.min.js"></script>
+    <!-- JavaScript dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.14/dist/sweetalert2.min.js"></script>
+
     <script>
+        // Get session value from PHP and assign it to a JavaScript variable
+        var loggedIn = <?php echo json_encode($_SESSION['loggedin']); ?>;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle post button click event
+            document.getElementById('postButton').addEventListener('click', function() {
+                // Check if the user is logged in
+                if (loggedIn) {
+                    // Show the post modal
+                    var postModal = new bootstrap.Modal(document.getElementById('postModal'));
+                    postModal.show();
+                } else {
+                    // Show SweetAlert message for unregistered users
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Not a registered user',
+                        text: 'You need to be a registered user to create a post.',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
         $(document).ready(function() {
             // Initialize the carousel
             $('.carousel').carousel();
