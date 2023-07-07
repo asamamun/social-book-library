@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,15 +11,20 @@ session_start();
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
-          #navbrand {
+        #navbrand {
             max-width: 200px;
             max-height: 120px;
             object-fit: cover;
         }
+        img{
+            max-width: 700px;
+            max-height: 700px;
+        }
     </style>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
         <div class="container-fluid">
             <a style="margin-left: 2rem;" class="navbar-brand" href="homee.php">
                 <img id="navbrand" src="assets/images/logo.png" alt="Logo">
@@ -57,7 +63,7 @@ session_start();
         </div>
     </nav>
 
-<div class="container">
+    <div class="container">
         <h1>Book Details</h1>
 
         <?php
@@ -73,7 +79,7 @@ session_start();
             $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
             // Retrieve book details from the database
-            $stmt =$db->prepare("SELECT books.*, users.name, categories.name, subcategories.name, writers.name, publishers.name, images.image
+            $stmt = $db->prepare("SELECT books.*, users.name as users_name, categories.name as category_name, subcategories.name as subcategories_name, writers.name as writers_name, publishers.name as publishers_name, images.image
                                       FROM books
                                       JOIN users ON books.user_id = users.id
                                       JOIN categories ON books.category_id = categories.id
@@ -88,22 +94,32 @@ session_start();
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                echo '<div class="card">
-                        <img src="' . $row['image'] . '" class="card-img-top" alt="Book Cover">
-                        <div class="card-body">
-                            <h5 class="card-title">' . $row['name'] . '</h5>
-                            <p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>
-                            <p class="card-text"><strong>Price:</strong> ' . $row['price'] . '</p>
-                            <p class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . '</p>
-                            <p class="card-text"><strong>User ID:</strong> ' . $row['user_id'] . '</p>
-                            <p class="card-text"><strong>Category:</strong> ' . $row['category_id'] . '</p>
-                            <p class="card-text"><strong>Subcategory:</strong> ' . $row['subcategory_id'] . '</p>
-                            <p class="card-text"><strong>Writer:</strong> ' . $row['writer_id'] . '</p>
-                            <p class="card-text"><strong>Publisher:</strong> ' . $row['publisher_id'] . '</p>
-                            <p class="card-text"><strong>Edition:</strong> ' . $row['edition'] . '</p>
-                            <p class="card-text"><strong>Location:</strong> ' . $row['location'] . '</p>
-                            <p class="card-text"><strong>Created At:</strong> ' . $row['created_at'] . '</p>
-                        </div>
+                echo '<div class="card mt-5">
+                <div class="row">
+                <div class="col-md-8">
+                    <h3 class="card-title ms-3 p-2">' . $row['name'] . '</h3>
+                    <p class="card-text ms-4"><strong>Posted on:</strong> ' . $row['created_at'] ."  lacation: ". $row['location'] . '</p>
+                    <img src="' . $row['image'] . '" class="card-img-top" alt="Book Cover">
+                    <div class="card-body">
+                        <p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>
+                        <p class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</p>
+                        <p class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</p>
+                        <p class="card-text"><strong>Category:</strong> ' . $row['category_name'] . '</p>
+                        <p class="card-text"><strong>Subcategory:</strong> ' . $row['subcategories_name'] . '</p>
+                        <p class="card-text"><strong>Writer:</strong> ' . $row['writers_name'] . '</p>
+                        <p class="card-text"><strong>Publisher:</strong> ' . $row['publishers_name'] . '</p>
+                        <p class="card-text"><strong>Edition:</strong> ' . $row['edition'] . '</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-5">
+                <div class="card">
+                        <p class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</p>
+                        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h4>Price: $99.99</h4>
+                        <button class="btn btn-primary">Add to Cart</button>
+                </div>
+                </div>
+            </div>
                     </div>';
             } else {
                 echo '<p>Book not found.</p>';
@@ -114,6 +130,7 @@ session_start();
         ?>
     </div>
 
-<script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
