@@ -19,7 +19,7 @@ if ($result->num_rows > 0) {
         $response = array(
             'status' => 'success',
             'message' => 'Login Successful',
-            'redirect' => 'homee.php'
+            'redirect' => 'home.php'
         );
     } elseif ($row['role'] == 2) {
         // Admin role

@@ -17,8 +17,8 @@ session_start();
             object-fit: cover;
         }
         img{
-            max-width: 700px;
-            max-height: 700px;
+            max-width: 750px;
+            max-height: 750px;
         }
     </style>
 </head>
@@ -26,7 +26,7 @@ session_start();
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
         <div class="container-fluid">
-            <a style="margin-left: 2rem;" class="navbar-brand" href="homee.php">
+            <a style="margin-left: 2rem;" class="navbar-brand" href="home.php">
                 <img id="navbrand" src="assets/images/logo.png" alt="Logo">
             </a>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -98,7 +98,7 @@ session_start();
                 <div class="row">
                 <div class="col-md-8">
                     <h3 class="card-title ms-3 p-2">' . $row['name'] . '</h3>
-                    <p class="card-text ms-4"><strong>Posted on:</strong> ' . $row['created_at'] ."  lacation: ". $row['location'] . '</p>
+                    <p class="card-text ms-4"><strong>Posted on:</strong> ' . $row['created_at'] ."  location: ". $row['location'] . '</p>
                     <img src="' . $row['image'] . '" class="card-img-top" alt="Book Cover">
                     <div class="card-body">
                         <p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>
@@ -113,9 +113,10 @@ session_start();
                 </div>
                 <div class="col-md-4 mt-5">
                 <div class="card">
-                        <p class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</p>
+                        <h3 class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</h3>
                         <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <h4>Price: $99.99</h4>
+                        <h5 class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</h5>
+                        <h5 class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</h5>
                         <button class="btn btn-primary">Add to Cart</button>
                 </div>
                 </div>

@@ -78,7 +78,7 @@ if (isset($_SESSION['user_id'])) {
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
     <div class="container-fluid">
-      <a style="margin-left: 2rem;" class="navbar-brand" href="homee.php">
+      <a style="margin-left: 2rem;" class="navbar-brand" href="home.php">
         <img id="navbrand" src="assets/images/logo.png" alt="Logo">
       </a>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

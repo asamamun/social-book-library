@@ -138,7 +138,7 @@ session_start();
                                     <?php endif; ?>
                                     <li class="nav-item mb-3">
                                         <!-- Button to trigger the action -->
-                                        <button type="button" class="btn btn-warning mt-4" id="postButton">POST YOUR BOOK</button>
+                                        <button type="button" class="btn btn-warning" id="postButton">POST YOUR BOOK</button>
                                     </li>
                                 </ul>
                             </div>
@@ -414,6 +414,7 @@ session_start();
 
     <!-- SweetAlert CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.14/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.14/dist/sweetalert2.min.css">
 
     <script>
         // Get session value from PHP and assign it to a JavaScript variable
@@ -438,6 +439,7 @@ session_start();
                 }
             });
         });
+
         $(document).ready(function() {
             // Initialize the carousel
             $('.carousel').carousel();
@@ -478,7 +480,7 @@ session_start();
                     contentType: false,
                     success: function(response) {
                         alert('Book saved successfully!');
-                        window.location.href = 'homee.php';
+                        window.location.href = 'home.php';
                     },
                     error: function(xhr, status, error) {
                         alert('Error saving book: ' + error);

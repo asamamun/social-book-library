@@ -102,7 +102,7 @@
             </a>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-white ms-5" aria-current="page" href="homee.php">Home</a>
+                    <a class="nav-link active text-white ms-5" aria-current="page" href="home.php">Home</a>
                 </li>
             </ul>
         </div>
