@@ -131,7 +131,6 @@ $conn->close();
                      </div>
                  </div>
              </div>
-             
          </div>';
                 }
                 ?>

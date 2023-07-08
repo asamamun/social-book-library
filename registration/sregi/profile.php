@@ -69,7 +69,7 @@ if (isset($_SESSION['user_id'])) {
     .card-container .book-cover {
       width: 200px;
       height: 200px;
-      margin-top: 40px;
+      margin-top: 0px;
       margin-right: 20px;
     }
   </style>
@@ -167,7 +167,7 @@ if (isset($_SESSION['user_id'])) {
           $stmt = $db->prepare("SELECT books.*, images.image 
                                       FROM books 
                                       JOIN images ON books.id = images.book_id 
-                                      WHERE books.user_id = :user_id");
+                                      WHERE books.user_id = :user_id ORDER BY books.id DESC");
           $stmt->bindParam(':user_id', $user_id);
           $stmt->execute();
 

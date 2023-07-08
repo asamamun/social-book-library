@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'connDB.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,11 +88,27 @@ session_start();
                                       JOIN writers ON books.writer_id = writers.id
                                       JOIN publishers ON books.publisher_id = publishers.id
                                       JOIN images ON books.id = images.book_id
-                                      WHERE books.id = :book_id");
+                                      WHERE books.id = :book_id ORDER BY books.id DESC");
             $stmt->bindParam(':book_id', $book_id);
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $userId = $row['user_id'];
+
+ 
+     $sql = "SELECT * FROM profiles WHERE user_id = '$userId'";
+    // Execute the query
+    $resultf = mysqli_query($conn, $sql);
+
+    // Check if the query was successful and a row was returned
+    if ($resultf && mysqli_num_rows($resultf) > 0) {
+      // Fetch the row and retrieve the user's profile photo URL
+      $rowf = mysqli_fetch_assoc($resultf);
+      $profilePhoto = $rowf['image'];
+      $_SESSION['profilepic'] = $profilePhoto;
+      $about = $rowf['bio'];
+      $phone = $rowf['phone'];
+    }
 
             if ($row) {
                 echo '<div class="card mt-5">
@@ -112,16 +129,16 @@ session_start();
                     </div>
                 </div>
                 <div class="col-md-4 mt-5">
-                <div class="card">
+                <div class="card me-4">
                         <h3 class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</h3>
-                        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                         <h5 class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</h5>
                         <h5 class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</h5>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <h4 class="card-text"><strong>Phone:</strong> ' .$phone .'</h4>
                 </div>
                 </div>
             </div>
-                    </div>';
+            </div>';
+            
             } else {
                 echo '<p>Book not found.</p>';
             }
@@ -130,7 +147,6 @@ session_start();
         }
         ?>
     </div>
-
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
