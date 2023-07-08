@@ -141,8 +141,8 @@ if (isset($_SESSION['user_id'])) {
             <!-- Button to trigger the modal -->
             <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#registrationModal">
               POST YOUR BOOK
-            </button>
-            <a class="nav-link mt-5 btn btn-danger" href="#" id="logoutBtn">Logout</a>
+            </button><br>
+            <a class="mt-5 btn btn-danger" href="#" id="logoutBtn">Logout</a>
           </div>
         </div>
       </div>
