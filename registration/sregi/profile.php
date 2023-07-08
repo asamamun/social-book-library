@@ -276,7 +276,7 @@ if (isset($_SESSION['user_id'])) {
           <div class="card-body">
             <form id="bookForm" method="post" enctype="multipart/form-data">
               <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Book Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
               </div>
               <div class="mb-3">

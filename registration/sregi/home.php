@@ -157,12 +157,66 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
                     <form class="d-flex mt-3 w-100 " role="search">
                         <div class=" d-flex px-5 px-lg-3 mx-auto w-100 search_wrap ">
-                            <input class="form-control p-2 ps-3 p-lg-3 ps-lg-4 rounded-pill " type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control p-2 ps-3 p-lg-3 ps-lg-4 rounded-pill" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+                            <ul id="resultList"></ul>
                             <button class="btn btn-light search_btn" type="submit">
                                 <img src="./assets/images/search.png" alt="search icon">
                             </button>
                         </div>
                     </form>
+                    <!-- script file is here -->
+                    <script>
+  $(document).ready(function() {
+    // Function to handle keyup event on the search input
+    $('#searchInput').on('keyup', function() {
+      var query = $(this).val();  // Retrieve the search query from the input field
+      
+      if (query !== '') {
+        $.ajax({
+          url: 'search.php',     // PHP script that handles the database query
+          type: 'POST',
+          data: {query: query},
+          success: function(response) {
+            $('#resultList').html(response);  // Update the list with the retrieved items
+          }
+        });
+      } else {
+        $('#resultList').empty();  // Clear the list if the input is empty
+      }
+    });
+
+    // Function to handle click event on the list items
+    $(document).on('click', '#resultList li', function() {
+      var selectedItem = $(this).text();  // Retrieve the clicked item's text
+      $.ajax({
+      url: 'output.php',  // PHP script to fetch output based on item
+      type: 'POST',
+      data: {item: selectedItem},
+      success: function(like) {
+        $('#output').html(like);  // Display the output
+        $('#searchInput').html();  // Clear the list
+      }
+      });
+    //   alert("Selected item: " + selectedItem);
+      $('#resultList').empty();  // Clear the list
+    });
+
+    $(document).on('click', '#resultList li', function() {
+      var selectedItem = $(this).text();  // Retrieve the clicked item's text
+      $.ajax({
+      url: 'get_details.php',  // PHP script to fetch output based on item
+      type: 'POST',
+      data: {selectedItem: selectedItem},
+      success: function(like) {
+        $('#detailsContainer').html(like);  // Display the output
+         
+      }
+      }); 
+    });
+
+
+  });
+</script>
                 </nav>
             </div>
         </div>
@@ -194,6 +248,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
+            <!-- search bar ar output is here -->
+            <div class="col-9 mt-5">
+          <div class="col-12 d-flex justify-content-center mt-4">
+            <div class="col-md-10">
+            <div id="detailsContainer"></div>
+            </div>
+          </div>
+        </div>
+            <!-- search bar ar output end here -->
 
             <div class="text-center m-2 p-2">
                 <h3>Browse Books By Category</h3>
