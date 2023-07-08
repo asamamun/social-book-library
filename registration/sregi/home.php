@@ -1,5 +1,11 @@
 <?php
 session_start();
+// Check if the user is logged in
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    $_SESSION['loggedin'] = false;
+} else {
+    $_SESSION['loggedin'] = true;
+}
 ?>
 
 <!DOCTYPE html>
@@ -188,7 +194,7 @@ session_start();
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
-           
+
             <div class="text-center m-2 p-2">
                 <h3>Browse Books By Category</h3>
             </div>
@@ -419,14 +425,13 @@ session_start();
         // Get session value from PHP and assign it to a JavaScript variable
         var loggedIn = <?php echo json_encode($_SESSION['loggedin']); ?>;
 
-        document.addEventListener('DOMContentLoaded', function() {
+        $(document).ready(function() {
             // Handle post button click event
-            document.getElementById('postButton').addEventListener('click', function() {
+            $("#postButton").on("click", function() {
                 // Check if the user is logged in
                 if (loggedIn) {
                     // Show the post modal
-                    var postModal = new bootstrap.Modal(document.getElementById('postModal'));
-                    postModal.show();
+                    $('#postModal').modal('show');
                 } else {
                     // Show SweetAlert message for unregistered users
                     Swal.fire({

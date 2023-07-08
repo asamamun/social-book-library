@@ -1,5 +1,24 @@
 <?php
 session_start();
+
+require 'connDB.php';
+
+$query = "SELECT * FROM categories";
+$result = $conn->query($query);
+
+$cards = '';
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+
+        $cards .= '<a href="view_category.php?id=' . $row['id'] . '" class="btn">' . $row['name'] . '</a><br>';
+        
+    }
+}
+
+// Close the database connection
+$conn->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +43,7 @@ session_start();
         .card-container .book-cover {
             width: 200px;
             height: 200px;
-            margin-top: 40px;
+            margin-top: 20px;
             margin-right: 20px;
         }
     </style>
@@ -70,13 +89,23 @@ session_start();
         </div>
     </nav>
     <div class="container">
-        <div class="row mt-5">
-            <div class="mt-5">
-                <?php
-// Retrieve the category id from the URL parameter
-if (isset($_GET['id'])) {
-    $cat_id = $_GET['id'];
+      <div class="row g-0 my-5">
+        <div class="col-3 mt-5">
+            <div class="card mt-5 ">
+              <div class="card-body vh-100">
+              <h3 class="m-1">All Categories</h3> <hr>
+              <?php echo $cards; ?>
 
+              </div>
+            </div>
+        </div>
+        <div class="col-9 mt-5">
+          <div class="col-12 d-flex justify-content-center mt-4">
+            <div class="col-md-10">
+                <?php
+                // Retrieve the category id from the URL parameter
+                if (isset($_GET['id'])) {
+                    $cat_id = $_GET['id'];
                 // Connect to the database
                 $servername = "localhost";
                 $username = "root";
@@ -89,10 +118,9 @@ if (isset($_GET['id'])) {
                        FROM books 
                        JOIN images ON books.id = images.book_id where books.category_id = '$cat_id'");
                 $stmt->execute();
-
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo '<div class="col-md-6 offset-md-3 mt-3">
-             <div class="card">
+                    echo '
+             <div class="card my-4">
              <div class="card-container">
                  <img src="' . $row['image'] . '" class="book-cover" alt="Book Cover">
                  <div class="card-body">
@@ -106,13 +134,15 @@ if (isset($_GET['id'])) {
                      </div>
                  </div>
              </div>
-             </div>
+             
          </div>';
-                } 
-            }
+                }
+                }
                 ?>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
 
