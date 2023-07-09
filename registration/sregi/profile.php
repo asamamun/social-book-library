@@ -69,7 +69,7 @@ if (isset($_SESSION['user_id'])) {
     .card-container .book-cover {
       width: 200px;
       height: 200px;
-      margin-top: 40px;
+      margin-top: 0px;
       margin-right: 20px;
     }
   </style>
@@ -141,8 +141,8 @@ if (isset($_SESSION['user_id'])) {
             <!-- Button to trigger the modal -->
             <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#registrationModal">
               POST YOUR BOOK
-            </button>
-            <a class="nav-link mt-5 btn btn-danger" href="#" id="logoutBtn">Logout</a>
+            </button><br>
+            <a class="mt-5 btn btn-danger" href="#" id="logoutBtn">Logout</a>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@ if (isset($_SESSION['user_id'])) {
           $stmt = $db->prepare("SELECT books.*, images.image 
                                       FROM books 
                                       JOIN images ON books.id = images.book_id 
-                                      WHERE books.user_id = :user_id");
+                                      WHERE books.user_id = :user_id ORDER BY books.id DESC");
           $stmt->bindParam(':user_id', $user_id);
           $stmt->execute();
 
@@ -276,7 +276,7 @@ if (isset($_SESSION['user_id'])) {
           <div class="card-body">
             <form id="bookForm" method="post" enctype="multipart/form-data">
               <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="name" class="form-label">Book Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
               </div>
               <div class="mb-3">
