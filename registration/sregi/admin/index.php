@@ -105,7 +105,7 @@ session_start();
         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
           <!-- User is logged in, show profile anchor link -->
           <li class="nav-item px-4">
-            <a class="nav-link active" href="profile.php">
+            <a class="nav-link active" href="../profile.php">
               <?php
               // Check if session variable is set for the profile picture
               if (isset($_SESSION['profilepic'])) {

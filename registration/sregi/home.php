@@ -157,8 +157,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
                     <form class="d-flex mt-3 w-100 " role="search">
                         <div class=" d-flex px-5 px-lg-3 mx-auto w-100 search_wrap ">
+                            <div class=" w-100">
+
                             <input class="form-control p-2 ps-3 p-lg-3 ps-lg-4 rounded-pill" id="searchInput" type="search" placeholder="Search" aria-label="Search">
                             <ul id="resultList"></ul>
+                            </div>
+                            
                             <button class="btn btn-light search_btn" type="submit">
                                 <img src="./assets/images/search.png" alt="search icon">
                             </button>
