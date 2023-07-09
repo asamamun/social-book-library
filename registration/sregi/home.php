@@ -35,7 +35,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         }
 
         .card img {
-            max-width: 200px;
+            max-width: 500px;
             max-height: 120px;
             object-fit: cover;
         }
@@ -102,7 +102,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <!-- offset navbar for small screen  -->
                         <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
                             <div class="offcanvas-header">
-                                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><a class="bg-image bg-cover bg-light" href="#"><img src="assets/images/logo.png" alt="logo"></a></h5>
+                                <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><a class="bg-image bg-cover" href="#"><img src="assets/images/logo.png" class="bg-light" alt="logo"></a></h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                             </div>
                             <div class="offcanvas-body">
@@ -279,7 +279,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     $cards .= '<div class="card mb-5">';
                     $cards .= '  <div class="card-header text-white bg-success">' . $row['name'] . '</div>';
                     $cards .= '  <div class="card-body">';
-                    $cards .= '    <img src="' . $row['image'] . '" class="card-img-top" alt="Category Image">';
+                    $cards .= '    <img src="admin/' . $row['image'] . '" class="card-img-top" alt="Category Image">';
                     $cards .= '<div class="text-end">';
                     $cards .= '    <a href="view_category.php?id=' . $row['id'] . '" class="btn btn-primary">View</a>';
                     $cards .= '  </div>';
