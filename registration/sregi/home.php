@@ -172,7 +172,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <button class="btn btn-light search_btn" type="submit">
                                 <img src="./assets/images/search.png" alt="search icon">
                             </button>
->>>>>>> 70b490d594c78b810e5b0e5df09b844926263fca
+>>>>>>> 70b490d594c7
                         </div>
                     </form>
                     <div class="row">

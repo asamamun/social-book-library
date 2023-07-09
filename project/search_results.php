@@ -1,6 +1,5 @@
 <?php
 session_start();
-require 'connDB.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +22,9 @@ require 'connDB.php';
         }
     </style>
 </head>
-
+</head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
+<nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
         <div class="container-fluid">
             <a style="margin-left: 2rem;" class="navbar-brand" href="home.php">
                 <img id="navbrand" src="assets/images/logo.png" alt="Logo">
@@ -63,15 +62,32 @@ require 'connDB.php';
             </ul>
         </div>
     </nav>
+        <?php
+        // Retrieve the book name from the query parameter
+        $bookName = $_GET['bookName'];
+
+      require 'connDB.php';
+
+        // Perform the search based on the book name
+        $sql = "SELECT * FROM books WHERE name = '$bookName'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $book_id = $row['id'];  
+            }
+        } else {
+            echo '<p>No search results found.</p>';
+        }
+
+        // Close the database connection
+        ?>
 
     <div class="container">
         <h1>Book Details</h1>
 
         <?php
         // Retrieve the book_id from the URL parameter
-        if (isset($_GET['book_id'])) {
-            $book_id = $_GET['book_id'];
-
             // Connect to the database
             $servername = "localhost";
             $username = "root";
@@ -144,9 +160,6 @@ require 'connDB.php';
             } else {
                 echo '<p>Book not found.</p>';
             }
-        } else {
-            echo '<p>Invalid book ID.</p>';
-        }
         ?>
 
          <?php
@@ -203,7 +216,8 @@ require 'connDB.php';
     </div>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/jquery-3.7.0.min.js"></script>
+    
     <script>
     $(document).ready(function() {
         // Edit comment button click event
@@ -282,5 +296,4 @@ require 'connDB.php';
     });
     </script>
 </body>
-
 </html>

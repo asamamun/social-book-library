@@ -90,7 +90,7 @@ $conn->close();
     </nav>
     <div class="container">
       <div class="row g-0 my-5">
-        <div class="col-3 mt-5">
+        <div class="col-md-3 mt-5">
             <div class="card mt-5 ">
               <div class="card-body vh-100">
               <h3 class="m-1">All Categories</h3> <hr>
@@ -99,7 +99,7 @@ $conn->close();
               </div>
             </div>
         </div>
-        <div class="col-9 mt-5">
+        <div class="col-md-9 mt-5">
           <div class="col-12 d-flex justify-content-center mt-4">
             <div class="col-md-10">
                 <?php
