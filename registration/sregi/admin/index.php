@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +10,11 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <style>
+     #navbrand {
+      max-width: 200px;
+      max-height: 120px;
+      object-fit: cover;
+    }
     .sidebar {
       background-color: #F8F9FA;
       height: 100vh;
@@ -90,8 +97,8 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
     <div class="container-fluid">
-      <a style="margin-left: 2rem;" class="navbar-brand" href="home.php">
-        <img id="navbrand" src="assets/images/logo.png" alt="Logo">
+      <a style="margin-left: 2rem;" class="navbar-brand" href="../home.php">
+        <img id="navbrand" src="../assets/images/logo.png" alt="Logo">
       </a>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         </li>
@@ -180,7 +187,7 @@
       });
 
         function loadDashboardContent() {
-            $('#page-content').load('../dashboard/dashboard.php');
+            $('#page-content').load('dashboard.php');
         }
 
       function loadPage(page) {
