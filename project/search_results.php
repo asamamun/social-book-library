@@ -77,12 +77,12 @@ session_start();
                 $book_id = $row['id'];  
             }
         } else {
-            echo '<p>No search results found.</p>';
+            echo '<script>alert("No search results found.");</script>';
+            exit;
         }
 
         // Close the database connection
         ?>
-
     <div class="container">
         <h1>Book Details</h1>
 
