@@ -18,8 +18,13 @@ if ($conn->connect_error) {
 
 // Perform the database query to get details for the selected item
 $sql = "SELECT * FROM books WHERE name = '$selectedItem'";
-$result = $conn->query($sql);
+$result = $conn->query($sql); 
 
+// $stmt = $conn->prepare("SELECT books.*, images.image 
+//                        FROM books 
+//                        JOIN images ON books.id = images.book_id where books.category_id = '$cat_id' ORDER BY books.id DESC");
+//                 $stmt->execute();
+//                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 // Process the query result and display the details
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
@@ -40,11 +45,12 @@ if ($result->num_rows > 0) {
       </div>
   </div>
   
-</div>'; 
+</div>';  
   // Add more fields as needed
 } else {
   echo "No details found for $selectedItem.";
 }
+                // }
 
 // Close the database connection
 $conn->close();

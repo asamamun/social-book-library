@@ -40,6 +40,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             object-fit: cover;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -158,12 +159,26 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <form class="d-flex mt-3 w-100 " role="search">
                         <div class=" d-flex px-5 px-lg-3 mx-auto w-100 search_wrap ">
                             <input class="form-control p-2 ps-3 p-lg-3 ps-lg-4 rounded-pill" id="searchInput" type="search" placeholder="Search" aria-label="Search">
-                            <ul id="resultList"></ul>
-                            <button class="btn btn-light search_btn" type="submit">
-                                <img src="./assets/images/search.png" alt="search icon">
-                            </button>
+                            <input class="btn btn-light search_btn" type="submit" value="Search" name="search" id="search">
+                                <!-- <img src="./assets/images/search.png" alt="search icon"> -->
+                            </input>
                         </div>
                     </form>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center align-items-center">
+
+                            <div id="detailsContainer"></div>
+                        </div>
+                    </div>
+
+                    <div class="row w-100">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+
+                            <ul id="resultList"></ul> 
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
                     <!-- script file is here -->
                     <script>
   $(document).ready(function() {
@@ -193,7 +208,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
       type: 'POST',
       data: {item: selectedItem},
       success: function(like) {
-        $('#output').html(like);  // Display the output
+        $('#searchInput').val(like);  // Display the output
+        // $('#output').html(like);  // Display the output
         $('#searchInput').html();  // Clear the list
       }
       });
@@ -201,8 +217,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
       $('#resultList').empty();  // Clear the list
     });
 
-    $(document).on('click', '#resultList li', function() {
-      var selectedItem = $(this).text();  // Retrieve the clicked item's text
+    $('#search').click(function(e) {
+        e.preventDefault();
+      var selectedItem = $("#searchInput").val();  // Retrieve the clicked item's text
       $.ajax({
       url: 'get_details.php',  // PHP script to fetch output based on item
       type: 'POST',
@@ -472,7 +489,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery-3.7.0.min.js"></script>
