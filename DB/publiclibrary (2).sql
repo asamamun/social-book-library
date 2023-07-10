@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2023 at 12:38 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Jul 10, 2023 at 08:31 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,7 +34,7 @@ CREATE TABLE `area` (
   `divid` int(2) NOT NULL,
   `distid` int(2) NOT NULL,
   `createdate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `area`
@@ -358,23 +358,34 @@ CREATE TABLE `books` (
   `user_id` int(11) NOT NULL,
   `category_id` int(2) NOT NULL,
   `subcategory_id` int(3) NOT NULL,
+  `writer_id` int(5) NOT NULL DEFAULT 0,
   `publisher_id` int(5) NOT NULL,
   `edition` varchar(30) DEFAULT NULL,
   `location` varchar(30) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Table structure for table `book_writer`
+-- Dumping data for table `books`
 --
 
-CREATE TABLE `book_writer` (
-  `book_id` int(11) NOT NULL,
-  `writer_id` int(5) NOT NULL,
-  `created_at` int(11) NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='m2m relations(pivot table)';
+INSERT INTO `books` (`id`, `name`, `description`, `price`, `sellprice`, `user_id`, `category_id`, `subcategory_id`, `writer_id`, `publisher_id`, `edition`, `location`, `created_at`) VALUES
+(3, 'rich dad poor dad', 'this most popular book', 5000.00, 50.00, 7, 4, 1, 2, 1, '12th', 'Dhaka', '2023-07-06 03:24:51'),
+(4, 'rich dad poor dad', 'this is most popular book', 500.00, 50.00, 8, 4, 1, 2, 1, '12th', 'Dhaka', '2023-07-08 03:25:30'),
+(5, 'Tesla mode s', 'this is book', 300.00, 30.00, 8, 4, 1, 2, 1, '5th', 'mirpur', '2023-07-08 06:49:37'),
+(6, 'Dopamine\'s detox', 'Dopamine\'s detox book', 500.00, 200.00, 8, 4, 1, 2, 1, '4th', 'kalabagan', '2023-07-10 04:23:48'),
+(7, 'power of positive thinking', 'power of positive thinking book', 600.00, 150.00, 8, 4, 1, 2, 1, '6th', 'kalabagan', '2023-07-10 04:27:12'),
+(8, 'physical education', 'physical education book', 700.00, 500.00, 8, 6, 8, 5, 5, '6th', 'Dhaka', '2023-07-10 04:51:20'),
+(9, 'Chemistry ', 'Chemistry book', 600.00, 550.00, 8, 6, 9, 8, 5, '5th', 'mirpur', '2023-07-10 04:53:32'),
+(10, 'Math', 'Math book', 300.00, 200.00, 8, 6, 9, 6, 5, '6th', 'Dhaka', '2023-07-10 04:56:15'),
+(11, 'Gitanjali', 'his collection of poems, for which Tagore was awarded the Nobel Prize in Literature in 1913, showcases his deep spiritual and philosophical reflections on life, love, and nature.', 500.00, 400.00, 10, 6, 9, 4, 2, '7th', 'Kazipara', '2023-07-10 05:10:07'),
+(12, 'Shesher Kobita', 'this novel explores the complex and evolving relationship between two individuals, Amit Ray and Labanya, delving into themes of love, society, and personal freedom.', 700.00, 500.00, 10, 6, 9, 6, 5, '8th', 'Dhanmondi', '2023-07-10 05:11:45'),
+(13, 'Nosto Meye', 'It is a coming-of-age novel that follows the journey of a young woman named Nilanjana, exploring her struggles, aspirations, and the challenges she faces in a patriarchal society.', 400.00, 250.00, 10, 4, 5, 7, 6, '3rd', 'kalabagan', '2023-07-10 05:13:30'),
+(14, 'Brishti O Meghmala', 'A romantic novel set against the backdrop of monsoon rains, it weaves a tale of love, longing, and self-discovery, capturing the essence of nature and human emotions.', 700.00, 500.00, 10, 8, 10, 7, 6, '6th', 'Kazipara', '2023-07-10 05:22:34'),
+(15, 'Quran', 'The central religious text of Islam, believed by Muslims to be a revelation from God. It contains the teachings, laws, and guidance for Muslims.', 1000.00, 800.00, 10, 5, 2, 6, 2, '5th', 'Dhaka', '2023-07-10 05:32:30'),
+(16, 'The Chronicles of Narnia', 'A series of seven fantasy novels that take readers to the magical world of Narnia. These books follow the adventures of children who stumble upon a wardrobe that serves as a portal to a land filled with talking animals, mythical creatures, and epic battles between good and evil.', 1200.00, 800.00, 10, 9, 18, 4, 4, '6th', 'Dhanmondi', '2023-07-10 05:43:13'),
+(17, 'Alice\'s Adventures in Wonderland', 'A whimsical tale that follows Alice as she falls down a rabbit hole into a fantastical world. In Wonderland, she encounters peculiar characters, nonsensical situations, and surreal adventures that challenge her perceptions of reality.', 500.00, 300.00, 10, 9, 17, 7, 5, '4th', 'kalabagan', '2023-07-10 05:44:16'),
+(18, 'The Chronicles of Eldoria', 'A sweeping epic that follows the rise and fall of a mythical kingdom, filled with ancient prophecies, legendary heroes, and dark forces that threaten to plunge the world into chaos.', 600.00, 300.00, 10, 8, 10, 10, 3, '5th', 'kalabagan', '2023-07-10 06:02:59');
 
 -- --------------------------------------------------------
 
@@ -388,7 +399,18 @@ CREATE TABLE `categories` (
   `description` text NOT NULL,
   `image` varchar(128) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `description`, `image`, `created_at`) VALUES
+(4, 'Non fiction', 'All non fiction books in the world', 'uploads/tom-hermans-9BoqXzEeQqM-unsplash-cropped.jpeg', '2023-06-19 03:24:45'),
+(5, 'religion', 'all religion books in the word', 'uploads/images (15).jpeg', '2023-06-19 03:25:48'),
+(6, 'Academic', 'academic books', 'uploads/wooden-bookcase-books-bookshelves-multicolored-260nw-1722703624.webp', '2023-06-26 03:49:42'),
+(8, 'fiction', 'fiction books', 'uploads/tom-hermans-9BoqXzEeQqM-unsplash-cropped.jpeg', '2023-07-06 03:47:24'),
+(9, 'story', 'story book', 'uploads/bookshelf-childrens-books-international-chidrens-260nw-2180197219.webp', '2023-07-09 06:25:26');
 
 -- --------------------------------------------------------
 
@@ -403,7 +425,16 @@ CREATE TABLE `comments` (
   `comment` varchar(256) NOT NULL,
   `reply_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `book_id`, `user_id`, `comment`, `reply_id`, `created_at`) VALUES
+(2, 5, 4, '', 2, '2023-07-09 04:44:56'),
+(3, 3, 4, 'Hello', 5, '2023-07-09 04:47:12'),
+(4, 3, 3, 'Most popular book', 5, '2023-07-09 04:47:12');
 
 -- --------------------------------------------------------
 
@@ -419,7 +450,7 @@ CREATE TABLE `countries` (
   `iso3` char(3) DEFAULT NULL,
   `numcode` smallint(6) DEFAULT NULL,
   `phonecode` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `countries`
@@ -677,7 +708,9 @@ INSERT INTO `countries` (`id`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `ph
 (250, 'BL', 'SAINT BARTHELEMY', 'Saint Barthelemy', 'BLM', 652, 590),
 (251, 'MF', 'SAINT MARTIN', 'Saint Martin', 'MAF', 663, 590),
 (252, 'SX', 'SINT MAARTEN', 'Sint Maarten', 'SXM', 534, 1),
-(253, 'SS', 'SOUTH SUDAN', 'South Sudan', 'SSD', 728, 211);
+(253, 'SS', 'SOUTH SUDAN', 'South Sudan', 'SSD', 728, 211),
+(254, 'NK', 'NOYAKHALI', 'Noyakhali', 'NKA', 45, 3231),
+(255, 'fd', 'gf', 'gffd', 'fgg', 32767, 453);
 
 -- --------------------------------------------------------
 
@@ -691,7 +724,7 @@ CREATE TABLE `district` (
   `distdesc` varchar(200) NOT NULL,
   `divid` int(2) NOT NULL,
   `createdate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `district`
@@ -774,7 +807,7 @@ CREATE TABLE `division` (
   `divname` varchar(20) NOT NULL,
   `divdesc` varchar(200) NOT NULL,
   `createdate` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `division`
@@ -802,7 +835,27 @@ CREATE TABLE `images` (
   `book_id` int(11) NOT NULL,
   `image` varchar(128) NOT NULL,
   `info` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `book_id`, `image`, `info`) VALUES
+(2, 4, 'uploads/images (1).jpeg', ''),
+(4, 6, 'uploads/download.jpeg', ''),
+(5, 7, 'uploads/images (13).jpeg', ''),
+(6, 8, 'uploads/download (4).jpeg', ''),
+(7, 9, 'uploads/download (11).jpeg', ''),
+(8, 10, 'uploads/41KJG47H6dL._SL250_.jpg', ''),
+(9, 11, 'uploads/3eabe156117819.59a0d31d71ceb.png', ''),
+(10, 12, 'uploads/images.jpeg', ''),
+(11, 13, 'uploads/download.jpeg', ''),
+(12, 14, 'uploads/efd9584c5bfd969252d645641cf4c112.jpg', ''),
+(13, 15, 'uploads/images (9).jpeg', ''),
+(14, 16, 'uploads/images (19).jpeg', ''),
+(15, 17, 'uploads/images (14).jpeg', ''),
+(16, 18, 'uploads/images (10).jpeg', '');
 
 -- --------------------------------------------------------
 
@@ -823,7 +876,16 @@ CREATE TABLE `profiles` (
   `excerpt` varchar(512) NOT NULL,
   `dob` datetime DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `profiles`
+--
+
+INSERT INTO `profiles` (`id`, `user_id`, `image`, `division_id`, `district_id`, `area_id`, `address`, `phone`, `bio`, `excerpt`, `dob`, `created_at`) VALUES
+(11, 7, 'uploads/download (7).jpeg', 1, 45, 1, 'mirpur-1', '01688947741', 'I am a man', 'I am a man', '1999-06-15 00:00:00', '2023-07-10 04:02:01'),
+(15, 10, 'uploads/1000_F_230608264_fhoqBuEyiCPwT0h9RtnsuNAId3hWungP.jpg', 7, 86, 286, 'Dinajpur sadar', '01347584733', 'I am student ', 'I am student', '1993-06-10 00:00:00', '2023-07-10 05:03:21'),
+(16, 8, 'uploads/man-avatar-image-for-profile-png.png', 1, 45, 2, 'North Dhanmondi', '01303895377', 'I am a student', 'I am a student', '1999-03-12 00:00:00', '2023-07-10 06:12:06');
 
 -- --------------------------------------------------------
 
@@ -837,7 +899,19 @@ CREATE TABLE `publishers` (
   `address` varchar(128) DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `publishers`
+--
+
+INSERT INTO `publishers` (`id`, `name`, `address`, `phone`, `created_at`) VALUES
+(1, 'sojib', 'Dhaka', '01305664654', '2023-07-06 03:21:12'),
+(2, 'Bangla Academy', 'Dhaka', '01305664654', '2023-07-10 04:37:51'),
+(3, 'Prothoma Prokashan', 'Dhaka', '01386564654', '2023-07-10 04:38:22'),
+(4, 'Anyaprokash', 'Khulna', '01305664654', '2023-07-10 04:38:51'),
+(5, 'Agamee Prakashani', 'Barishal', '01854544646', '2023-07-10 04:39:23'),
+(6, 'The University Press Limited (UPL)', 'Rongpur', '01365456456', '2023-07-10 04:39:55');
 
 -- --------------------------------------------------------
 
@@ -852,7 +926,33 @@ CREATE TABLE `subcategories` (
   `description` text NOT NULL,
   `image` varchar(128) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subcategories`
+--
+
+INSERT INTO `subcategories` (`id`, `category_id`, `name`, `description`, `image`, `created_at`) VALUES
+(1, 4, 'motivational book', 'this is motivation book', 'uploads/images (3).jpeg', '2023-06-21 04:01:05'),
+(2, 5, 'hadis', 'this is hadis', 'uploads/download (3).jpeg', '2023-06-21 04:02:00'),
+(3, 9, 'hadis', 'muslim guidline', 'uploads/download (3).jpeg', '2023-07-09 06:26:16'),
+(4, 5, 'Hindoism', 'hindos guidline book', 'uploads/images (2).jpeg', '2023-07-09 06:28:12'),
+(5, 4, 'Memoirs and Autobiographies', 'Memoirs and Autobiographies books', 'uploads/wooden-bookcase-books-bookshelves-multicolored-260nw-1722703624.webp', '2023-07-10 03:43:58'),
+(6, 4, 'Science and Popular Science', 'Science and Popular Science books', 'uploads/images (10).jpeg', '2023-07-10 03:53:36'),
+(7, 4, 'History and Historical Biographies', 'History and Historical Biographies books', 'uploads/images (9).jpeg', '2023-07-10 03:54:13'),
+(8, 6, 'class 6', 'class 6 books', 'uploads/images (4).jpeg', '2023-07-10 04:29:04'),
+(9, 6, 'class 7', 'class 7 books', 'uploads/images (14).jpeg', '2023-07-10 04:30:10'),
+(10, 8, 'Science Fiction', 'Science fiction books explore imaginative and speculative concepts related to science, technology, and future societies.', 'uploads/images (3).jpeg', '2023-07-10 05:18:01'),
+(11, 4, 'Fantasy', ' Fantasy books transport readers to magical worlds and realms, incorporating elements such as mythical creatures, magic, quests, and epic battles between good and evil.', 'uploads/images (4).jpeg', '2023-07-10 05:18:31'),
+(12, 4, 'Thriller/Suspense', 'Thriller books are characterized by their fast-paced and gripping plots, often involving intense suspense, danger, and high-stakes situations that keep readers on the edge of their seats.', 'uploads/images (6).jpeg', '2023-07-10 05:19:12'),
+(13, 4, 'Romance', 'Romance novels focus on romantic relationships and love stories. They explore the emotional and often passionate connections between characters and can range from light-hearted to dramatic and steamy.', 'uploads/images.jpeg', '2023-07-10 05:19:40'),
+(14, 5, 'Scriptures and Sacred Texts', 'Scriptures and Sacred Texts', 'uploads/download (7).jpeg', '2023-07-10 05:26:25'),
+(15, 5, 'Comparative Religion', 'Books that compare and analyze different religious traditions, their beliefs, practices, and histories. These books often aim to foster understanding and dialogue between various religious perspectives.', 'uploads/download (5).jpeg', '2023-07-10 05:27:33'),
+(16, 4, 'Rituals and Practices', 'Books that explain the rituals, ceremonies, and practices associated with a particular religion. These books provide guidance on worship, prayer, meditation, sacraments, and other religious observances', 'uploads/images (9).jpeg', '2023-07-10 05:28:16'),
+(17, 9, 'Fantasy and Science Fiction', 'Books that transport readers to imaginary worlds, often featuring elements such as magic, mythical creatures, advanced technology, or futuristic settings. They explore themes of adventure, heroism, and the power of imagination.', 'uploads/images (15).jpeg', '2023-07-10 05:38:25'),
+(18, 9, 'Fairy Tales and Folklore', ' Books that collect traditional tales, legends, and myths from various cultures. These stories often involve magical elements, mythical creatures, and moral lessons.', 'uploads/images (5).jpeg', '2023-07-10 05:38:57'),
+(19, 9, 'Romance Novels', ' Books that focus on romantic relationships, emotions, and personal connections. They often explore themes of love, passion, and the complexities of human relationships.', 'uploads/images.jpeg', '2023-07-10 05:39:37'),
+(20, 9, 'Biographies and Memoirs', 'Books that recount the lives and experiences of real individuals, either written by themselves (memoirs) or by others (biographies). ', 'uploads/images (14).jpeg', '2023-07-10 05:40:28');
 
 -- --------------------------------------------------------
 
@@ -868,14 +968,19 @@ CREATE TABLE `users` (
   `role` tinyint(1) NOT NULL DEFAULT 1,
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `active`, `created_at`) VALUES
-(3, 'test', 'test@gmail.com', '$2y$10$b2KAF.cJB/66SOe8yUWgfOeulLTjSUjoDzdVwPgjVyRDrCdcEIdde', 1, 1, '2023-06-18 06:21:25');
+(5, 'turjo', 'turj@gmail.com', '1234567a', 1, 1, '2023-06-21 03:31:48'),
+(6, 'Shawon Khan', 'shawonk007@gmail.com', 'asdf', 2, 1, '2023-06-26 03:04:27'),
+(7, 'MD Rifat', 'rifat@gmail.com', 'r123456', 2, 1, '2023-06-26 03:33:51'),
+(8, 'Shakil Miah', 'shakilmiahcse36@gmail.com', '1234', 2, 1, '2023-06-26 06:00:17'),
+(9, 'kamrul', 'kamrul@gmail.com', '1234', 1, 1, '2023-07-09 06:31:13'),
+(10, 'Inzamam', 'turjo@gmail.com', '1234', 2, 1, '2023-07-10 04:59:11');
 
 -- --------------------------------------------------------
 
@@ -890,7 +995,28 @@ CREATE TABLE `writers` (
   `country_id` int(3) NOT NULL,
   `image` varchar(128) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `writers`
+--
+
+INSERT INTO `writers` (`id`, `name`, `bio`, `country_id`, `image`, `created_at`) VALUES
+(2, 'shakil', 'student', 18, 'images/George-Saunders.jpg', '2023-07-06 03:21:57'),
+(3, 'sojib', 'this is book', 16, 'images/George-Saunders.jpg', '2023-07-09 06:27:05'),
+(4, 'Mahasweta Devi', 'Mahasweta Devi popular writer', 18, 'images/images (19).jpeg', '2023-07-10 04:34:45'),
+(5, 'Avijit Roy', 'Avijit Roy famous writer in the bangladesh ', 18, 'images/images (1).png', '2023-07-10 04:35:47'),
+(6, 'Muhammad Yunus', 'Muhammad Yunus writer', 18, 'images/images (24).jpeg', '2023-07-10 04:47:18'),
+(7, 'Rehman Sobhan', 'Rehman Sobhan writer', 99, 'images/images (26).jpeg', '2023-07-10 04:48:18'),
+(8, 'Serajul Islam Choudhury', 'Serajul Islam Choudhury writer', 18, 'images/images (25).jpeg', '2023-07-10 04:48:50'),
+(9, 'Kazi Nazrul Islam', 'The Rebel Poet of Bengal Kazi Nazrul Islam is remembered for his vast body of literary work, including poems and songs written during the British Raj, mostly laced with socio-political overtones. His songs, known as Nazrul Geeti, are the staple for any Bengali household. He is also Bangladesh’s national poet.', 18, 'images/kazi-nazrul-islam-1.png', '2023-07-10 05:50:44'),
+(10, 'Muhammed Zafar Iqbal', 'Muhammed Zafar Iqbal is a Bangladeshi author, physicist, activist, and academic. Iqbal is credited with introducing and popularizing science fiction novels and stories in the Bengali language. Over the years, he has won several prestigious literary awards, such as the Khalekdad Chowdhury Literary Award, Sheltech Literary Award, Uro Child Literary Award, and Md. Mudabber-Husne ara literary Award', 18, 'images/muhammed-zafar-iqbal-1.png', '2023-07-10 05:51:58'),
+(11, 'Marzuk Russell ', 'Marzuk Russell is a noted Bangladeshi lyricist, poet, model, and actor, born a year after his country’s liberation from Pakistani rule. He began writing poems while in the eighth grade, debuting as a lyrist in late 1990s and as an actor in 2000; he published his first collection of poems in the same year.', 18, 'images/marzuk-russell-1.png', '2023-07-10 05:52:55'),
+(12, 'Zahir Raihan', 'Zahir Raihan was a noted Bangladeshi short story writer, novelist and filmmaker. Director of Jeebon Theke Neya (1970) and Stop Genocide (1971) he also participated in the 1969 mass uprising and was possibly killed in 1972 by the opponent of Liberation War.', 18, 'images/zahir-raihan-1.png', '2023-07-10 05:53:36'),
+(13, 'Jasimuddin', 'Bangladeshi poet and author Jasimuddin, also known as Polli Kobi, or The Rural Poet, was one of the key figures of the Bengali language movement. Best known for his lyric poems such as Nakshi Kanthar Math, and for his use of Bengali folklore, he created a stir by rejecting the Bangla Academy Award.', 18, 'images/jasimuddin-1 (1).png', '2023-07-10 05:54:20'),
+(14, 'Syed Mujtaba Ali', 'Syed Mujtaba Ali was a Bangladeshi writer, travel enthusiast, journalist, academic, linguist, and scholar. Born into a Bengali Muslim family in British India, Ali was an ardent supporter of the Bengali language. He was one of the first activists to call for Bengali as the state language of East Pakistan. He was honored with the Narsinghadas Prize and Ekushey Padak', 18, 'images/syed-mujtaba-ali-1.png', '2023-07-10 05:55:24'),
+(15, 'Shahidullah Kaiser', 'Shahidullah Kaiser was a Bangladeshi writer and novelist. Kaiser took an active part in the Bengali language movement and was arrested on a couple of occasions by the Pakistani government before disappearing during the Bangladesh Liberation War. He was the recipient of several prestigious awards such as Adamjee Literary Award, Bangla Academy Literary Award, Ekushey Padak, and Independence Day Award.', 18, 'images/shahidullah-kaiser-1.png', '2023-07-10 05:56:24'),
+(16, 'Kabir Chowdhury', 'Kabir Chowdhury, who was named as the National Professor of Bangladesh, was a renowned essayist and translator of his time. He also wrote extensively on topics such as painting and sculpture and won awards such as the Ekushey Padak. Some of his most popular translations include The Metamorphosis and Beowulf.', 18, 'images/kabir-chowdhury-1.png', '2023-07-10 05:57:10');
 
 --
 -- Indexes for dumped tables
@@ -911,15 +1037,9 @@ ALTER TABLE `books`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`),
   ADD KEY `subcategory_id` (`subcategory_id`),
+  ADD KEY `writer_id` (`writer_id`),
   ADD KEY `publisher_id` (`publisher_id`),
   ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `book_writer`
---
-ALTER TABLE `book_writer`
-  ADD KEY `book_id` (`book_id`),
-  ADD KEY `writer_id` (`writer_id`);
 
 --
 -- Indexes for table `categories`
@@ -1011,31 +1131,31 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=254;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
 
 --
 -- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
-  MODIFY `distid` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
+  MODIFY `distid` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `division`
@@ -1047,37 +1167,37 @@ ALTER TABLE `division`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `writers`
 --
 ALTER TABLE `writers`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
@@ -1099,13 +1219,6 @@ ALTER TABLE `books`
   ADD CONSTRAINT `books_ibfk_3` FOREIGN KEY (`writer_id`) REFERENCES `writers` (`id`),
   ADD CONSTRAINT `books_ibfk_4` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
   ADD CONSTRAINT `books_ibfk_5` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `book_writer`
---
-ALTER TABLE `book_writer`
-  ADD CONSTRAINT `book_writer_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`),
-  ADD CONSTRAINT `book_writer_ibfk_2` FOREIGN KEY (`writer_id`) REFERENCES `writers` (`id`);
 
 --
 -- Constraints for table `comments`
