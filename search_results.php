@@ -122,8 +122,6 @@ session_start();
     if ($resultf && mysqli_num_rows($resultf) > 0) {
       // Fetch the row and retrieve the user's profile photo URL
       $rowf = mysqli_fetch_assoc($resultf);
-      $profilePhoto = $rowf['image'];
-      $_SESSION['profilepic'] = $profilePhoto;
       $about = $rowf['bio'];
       $phone = $rowf['phone'];
     }

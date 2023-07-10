@@ -24,7 +24,7 @@ if (isset($_SESSION['user_id'])) {
       $row = mysqli_fetch_assoc($result);
       $name = $row['name'];
     }
-    $sql = "SELECT * FROM profiles WHERE user_id = '$userId'";
+    $sql = "SELECT * FROM profiles WHERE user_id = '$userId' ORDER BY id DESC LIMIT 1";
 
     // Execute the query
     $resultf = mysqli_query($conn, $sql);
