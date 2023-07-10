@@ -113,7 +113,7 @@ $conn->close();
                 // Retrieve book details and cover image for the logged-in user from the books and images tables
                 $stmt = $db->prepare("SELECT books.*, images.image 
                        FROM books 
-                       JOIN images ON books.id = images.book_id");
+                       JOIN images ON books.id = images.book_id ORDER BY id DESC");
                 $stmt->execute();
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '
