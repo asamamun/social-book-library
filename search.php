@@ -17,14 +17,13 @@ if ($conn->connect_error) {
 }
 
 // Perform the database query
-$sql = "SELECT `name` FROM books WHERE `name` LIKE '%$searchQuery%'";
+$sql = "SELECT name FROM books WHERE name LIKE '%$searchQuery%'";
 $result = $conn->query($sql);
 
 // Generate the list of items
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
-    $areaname = $row['name'];
-    // $areaname = $row['name'];
+    $areaname = $row['areaname'];
     echo "<li>$areaname</li>";
   }
 } else {

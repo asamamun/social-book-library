@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+    // Retrieve the user ID from the session
+    $userId = $_SESSION['user_id'];
 // Database connection settings
 require 'connDB.php';
 
@@ -7,10 +11,14 @@ $commentId = $_POST['comment_id'];
 $bookId = $_POST['book_id'];
 $comment = $_POST['comment'];
 
+echo $commentId;
+echo $bookId;
+echo $comment;
+
 if (empty($commentId)) {
     // Add new comment
-    $sql = "INSERT INTO comments (book_id, user_id, comment, reply_id, created_at) 
-            VALUES ('$bookId', '1', '$comment', NULL, NOW())";
+    $sql = "INSERT INTO comments (book_id, user_id, comment, reply_id) 
+            VALUES ('$bookId', '$userId', '$comment', NULL)";
 
     if ($conn->query($sql) === TRUE) {
         // Success response
@@ -36,4 +44,5 @@ if (empty($commentId)) {
 
 // Close the database connection
 $conn->close();
+}
 ?>

@@ -90,7 +90,7 @@ $conn->close();
     </nav>
     <div class="container">
       <div class="row g-0 my-5">
-        <div class="col-3 mt-5">
+        <div class="col-md-3 mt-5">
             <div class="card mt-5 ">
               <div class="card-body vh-100">
               <h3 class="m-1">All Categories</h3> <hr>
@@ -99,13 +99,10 @@ $conn->close();
               </div>
             </div>
         </div>
-        <div class="col-9 mt-5">
+        <div class="col-md-9 mt-5">
           <div class="col-12 d-flex justify-content-center mt-4">
             <div class="col-md-10">
                 <?php
-                // Retrieve the category id from the URL parameter
-                if (isset($_GET['id'])) {
-                    $cat_id = $_GET['id'];
                 // Connect to the database
                 $servername = "localhost";
                 $username = "root";
@@ -116,7 +113,7 @@ $conn->close();
                 // Retrieve book details and cover image for the logged-in user from the books and images tables
                 $stmt = $db->prepare("SELECT books.*, images.image 
                        FROM books 
-                       JOIN images ON books.id = images.book_id where books.category_id = '$cat_id' ORDER BY books.id DESC");
+                       JOIN images ON books.id = images.book_id");
                 $stmt->execute();
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '
@@ -134,9 +131,7 @@ $conn->close();
                      </div>
                  </div>
              </div>
-             
          </div>';
-                }
                 }
                 ?>
             </div>

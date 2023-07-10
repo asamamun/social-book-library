@@ -124,7 +124,7 @@ if (isset($_SESSION['user_id'])) {
             <?php if (isset($profilePhoto)) : ?>
               <img src="<?php echo $profilePhoto; ?>" class="rounded-circle mb-3" width="150" height="150" alt="Profile Photo">
             <?php else : ?>
-              <img src="assets/images/book-1.jpg" class="rounded-circle mb-3" width="150" height="150" alt="Default Profile Photo">
+              <img src="assets/images/profile-avater.png" class="rounded-circle mb-3" width="150" height="150" alt="Default Profile Photo">
             <?php endif; ?>
             <?php if (isset($name)) : ?>
               <h3 class="card-title"><?php echo $name; ?></h3>
@@ -183,6 +183,7 @@ if (isset($_SESSION['user_id'])) {
                                     <p class="card-text">Selling Price: ' . $row['sellprice'] . ' Tk</p>
                                     <p class="card-text">Time: ' . $row['created_at'] . '</p>
                                     <div class="text-end">
+                                    <button class="btn btn-danger delete-book" data-book-id="' . $row['id'] . '">Delete</button>
                                     <a href="view_book.php?book_id=' . $row['id'] . '" class="btn btn-primary">View</a>
                                     </div>
                                 </div>
@@ -368,6 +369,26 @@ if (isset($_SESSION['user_id'])) {
 
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+  <script src="assets/js/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).on('click', '.delete-book', function() {
+            var bookId = $(this).data('book-id');
+            
+            // Confirm deletion
+            if (confirm("Are you sure you want to delete this book?")) {
+                // AJAX request to delete the book
+                $.ajax({
+                    url: 'delete_book.php',
+                    type: 'POST',
+                    data: { bookId: bookId },
+                    success: function(response) {
+                        // Reload the page to reflect the updated search results
+                        location.reload();
+                    }
+                });
+            }
+        });
+    </script>
   <script>
     $(document).ready(function() {
       // Populate divisions dropdown

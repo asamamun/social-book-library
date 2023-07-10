@@ -40,7 +40,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             object-fit: cover;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -156,95 +155,18 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         All of Bangladesh
                     </button>
 
-                    <form class="d-flex mt-3 w-100 " role="search">
+                    <form class="d-flex mt-3 w-100 " id="searchForm" action="search_results.php" method="GET">
                         <div class=" d-flex px-5 px-lg-3 mx-auto w-100 search_wrap ">
                             <div class=" w-100">
 
-                            <input class="form-control p-2 ps-3 p-lg-3 ps-lg-4 rounded-pill" id="searchInput" type="search" placeholder="Search" aria-label="Search">
-<<<<<<< HEAD
-                            <input class="btn btn-light search_btn" type="submit" value="Search" name="search" id="search">
-                                <!-- <img src="./assets/images/search.png" alt="search icon"> -->
-                            </input>
-=======
-                            <ul id="resultList"></ul>
+                            <input class="form-control p-2 ps-3 p-lg-3 ps-lg-4 rounded-pill" placeholder="Search" id="bookName" name="bookName" autocomplete="off">
                             </div>
                             
                             <button class="btn btn-light search_btn" type="submit">
                                 <img src="./assets/images/search.png" alt="search icon">
                             </button>
->>>>>>> 70b490d594c7
                         </div>
                     </form>
-                    <div class="row">
-                        <div class="col d-flex justify-content-center align-items-center">
-
-                            <div id="detailsContainer"></div>
-                        </div>
-                    </div>
-
-                    <div class="row w-100">
-                        <div class="col-4"></div>
-                        <div class="col-4">
-
-                            <ul id="resultList"></ul> 
-                        </div>
-                        <div class="col-4"></div>
-                    </div>
-                    <!-- script file is here -->
-                    <script>
-  $(document).ready(function() {
-    // Function to handle keyup event on the search input
-    $('#searchInput').on('keyup', function() {
-      var query = $(this).val();  // Retrieve the search query from the input field
-      
-      if (query !== '') {
-        $.ajax({
-          url: 'search.php',     // PHP script that handles the database query
-          type: 'POST',
-          data: {query: query},
-          success: function(response) {
-            $('#resultList').html(response);  // Update the list with the retrieved items
-          }
-        });
-      } else {
-        $('#resultList').empty();  // Clear the list if the input is empty
-      }
-    });
-
-    // Function to handle click event on the list items
-    $(document).on('click', '#resultList li', function() {
-      var selectedItem = $(this).text();  // Retrieve the clicked item's text
-      $.ajax({
-      url: 'output.php',  // PHP script to fetch output based on item
-      type: 'POST',
-      data: {item: selectedItem},
-      success: function(like) {
-        $('#searchInput').val(like);  // Display the output
-        // $('#output').html(like);  // Display the output
-        $('#searchInput').html();  // Clear the list
-      }
-      });
-    //   alert("Selected item: " + selectedItem);
-      $('#resultList').empty();  // Clear the list
-    });
-
-    $('#search').click(function(e) {
-        e.preventDefault();
-      var selectedItem = $("#searchInput").val();  // Retrieve the clicked item's text
-      $.ajax({
-      url: 'get_details.php',  // PHP script to fetch output based on item
-      type: 'POST',
-      data: {selectedItem: selectedItem},
-      success: function(like) {
-        $('#detailsContainer').html(like);  // Display the output
-         
-      }
-      }); 
-    });
-
-
-  });
-</script>
                 </nav>
             </div>
         </div>
@@ -461,14 +383,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <h5>About Us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget justo sit amet ligula ullamcorper volutpat. Sed euismod leo in mi pharetra, a fermentum justo pellentesque.</p>
+                    <p>An online bookshop for old and rare books offers a comprehensive catalog, robust search options, secure payments, reliable shipping, book evaluation services, community forums, and responsive customer support, creating a trusted platform for buying and selling unique literary treasures.</p>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h5>Contact Us</h5>
                     <ul class="list-unstyled">
-                        <li><i class="bi bi-geo-alt-fill"></i> 123 Street, City, Country</li>
-                        <li><i class="bi bi-telephone-fill"></i> +1 234 567 890</li>
-                        <li><i class="bi bi-envelope-fill"></i> info@example.com</li>
+                        <li><i class="bi bi-geo-alt-fill"></i> 1216 Street, Dhaka, Bangladesh</li>
+                        <li><i class="bi bi-telephone-fill"></i> 01303895377</li>
+                        <li><i class="bi bi-envelope-fill"></i> shakilmiahr55@gmail.com</li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
@@ -500,7 +422,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
     </footer>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/jquery-3.7.0.min.js"></script>
@@ -511,6 +433,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <!-- SweetAlert CDN -->
     <script src="assets/js/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Enable autocomplete for the book name input field
+            $("#bookName").autocomplete({
+                source: "get_book_names.php", // URL to fetch book names from the server
+                minLength: 1 // Minimum characters required before triggering autocomplete
+            });
+        });
+    </script>
 
     <script>
         // Get session value from PHP and assign it to a JavaScript variable
