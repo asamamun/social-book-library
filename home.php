@@ -39,6 +39,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             max-height: 120px;
             object-fit: cover;
         }
+        .ui-autocomplete {
+        background-color: #f5f5f5; /* Replace with your desired background color */
+        width: 200px;
+        }
     </style>
 </head>
 
