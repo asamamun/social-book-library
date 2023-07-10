@@ -9,21 +9,26 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center mt-5">User Login</h1>
-        <div class="card">
-            <div class="card-header bg-success text-white">Login Now</div>
-            <div class="card-body">
-                <form id="login-form" method="POST" action="login_user.php">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h1 class="text-center mt-5">User Login</h1>
+                <div class="card">
+                    <div class="card-header bg-success text-white">Login Now</div>
+                    <div class="card-body">
+                        <form id="login-form" method="POST" action="login_user.php">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
