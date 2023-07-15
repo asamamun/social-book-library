@@ -1,4 +1,50 @@
 <?php
+// Start the session
+session_start();
+
+// Check if the user is logged in and the user ID is set in the session
+if (isset($_SESSION['user_id'])) {
+  // Retrieve the user ID from the session
+  $userId = $_SESSION['user_id'];
+
+  // Connect to the MySQL database
+  require 'connDB.php';
+
+  // Check if the connection was successful
+  if ($conn) {
+    // Query to retrieve the user's name from the database
+    $query = "SELECT name FROM users WHERE id = '$userId'";
+
+    // Execute the query
+    $result = mysqli_query($conn, $query);
+
+    // Check if the query was successful and a row was returned
+    if ($result && mysqli_num_rows($result) > 0) {
+      // Fetch the row and retrieve the user's name
+      $row = mysqli_fetch_assoc($result);
+      $name = $row['name'];
+    }
+    $sql = "SELECT * FROM profiles WHERE user_id = '$userId' ORDER BY id DESC LIMIT 1";
+
+    // Execute the query
+    $resultf = mysqli_query($conn, $sql);
+
+    // Check if the query was successful and a row was returned
+    if ($resultf && mysqli_num_rows($resultf) > 0) {
+      // Fetch the row and retrieve the user's profile photo URL
+      $row = mysqli_fetch_assoc($resultf);
+      $profilePhoto = $row['image'];
+      $_SESSION['profilepic'] = $profilePhoto;
+      $about = $row['bio'];
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+  }
+}
+?>
+
+<?php
 session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
