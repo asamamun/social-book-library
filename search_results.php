@@ -16,15 +16,17 @@ session_start();
             max-height: 120px;
             object-fit: cover;
         }
-        img{
+
+        img {
             max-width: 750px;
             max-height: 750px;
         }
     </style>
 </head>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top ">
         <div class="container-fluid">
             <a style="margin-left: 2rem;" class="navbar-brand" href="home.php">
                 <img id="navbrand" src="assets/images/logo.png" alt="Logo">
@@ -62,41 +64,41 @@ session_start();
             </ul>
         </div>
     </nav>
-        <?php
-        // Retrieve the book name from the query parameter
-        $bookName = $_GET['bookName'];
+    <?php
+    // Retrieve the book name from the query parameter
+    $bookName = $_GET['bookName'];
 
-      require 'connDB.php';
+    require 'connDB.php';
 
-        // Perform the search based on the book name
-        $sql = "SELECT * FROM books WHERE name = '$bookName'";
-        $result = $conn->query($sql);
+    // Perform the search based on the book name
+    $sql = "SELECT * FROM books WHERE name = '$bookName'";
+    $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $book_id = $row['id'];  
-            }
-        } else {
-            echo '<script>alert("No search results found.");</script>';
-            exit;
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $book_id = $row['id'];
         }
+    } else {
+        echo '<script>alert("No search results found.");</script>';
+        exit;
+    }
 
-        // Close the database connection
-        ?>
+    // Close the database connection
+    ?>
     <div class="container">
         <h1>Book Details</h1>
 
         <?php
         // Retrieve the book_id from the URL parameter
-            // Connect to the database
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "publiclibrary";
-            $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // Connect to the database
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "publiclibrary";
+        $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-            // Retrieve book details from the database
-            $stmt = $db->prepare("SELECT books.*, users.name as users_name, categories.name as category_name, subcategories.name as subcategories_name, writers.name as writers_name, publishers.name as publishers_name, images.image
+        // Retrieve book details from the database
+        $stmt = $db->prepare("SELECT books.*, users.name as users_name, categories.name as category_name, subcategories.name as subcategories_name, writers.name as writers_name, publishers.name as publishers_name, images.image
                                       FROM books
                                       JOIN users ON books.user_id = users.id
                                       JOIN categories ON books.category_id = categories.id
@@ -105,67 +107,68 @@ session_start();
                                       JOIN publishers ON books.publisher_id = publishers.id
                                       JOIN images ON books.id = images.book_id
                                       WHERE books.id = :book_id ORDER BY books.id DESC");
-            $stmt->bindParam(':book_id', $book_id);
-            $stmt->execute();
+        $stmt->bindParam(':book_id', $book_id);
+        $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $bookId = $row['id'];
-            $userId = $row['user_id'];
-            
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $bookId = $row['id'];
+        $userId = $row['user_id'];
 
- 
-     $sql = "SELECT * FROM profiles WHERE user_id = '$userId'";
-    // Execute the query
-    $resultf = mysqli_query($conn, $sql);
 
-    // Check if the query was successful and a row was returned
-    if ($resultf && mysqli_num_rows($resultf) > 0) {
-      // Fetch the row and retrieve the user's profile photo URL
-      $rowf = mysqli_fetch_assoc($resultf);
-      $about = $rowf['bio'];
-      $phone = $rowf['phone'];
-    }
 
-            if ($row) {
-                echo '<div class="card mt-5">
-                <div class="row">
-                <div class="col-md-8">
-                    <h3 class="card-title ms-3 p-2">' . $row['name'] . '</h3>
-                    <p class="card-text ms-4"><strong>Posted on:</strong> ' . $row['created_at'] ."  location: ". $row['location'] . '</p>
-                    <img src="' . $row['image'] . '" class="card-img-top" alt="Book Cover">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>
-                        <p class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</p>
-                        <p class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</p>
-                        <p class="card-text"><strong>Category:</strong> ' . $row['category_name'] . '</p>
-                        <p class="card-text"><strong>Subcategory:</strong> ' . $row['subcategories_name'] . '</p>
-                        <p class="card-text"><strong>Writer:</strong> ' . $row['writers_name'] . '</p>
-                        <p class="card-text"><strong>Publisher:</strong> ' . $row['publishers_name'] . '</p>
-                        <p class="card-text"><strong>Edition:</strong> ' . $row['edition'] . '</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-5">
-                <div class="card me-4">
-                        <h3 class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</h3>
-                        <h5 class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</h5>
-                        <h5 class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</h5>
-                        <h4 class="card-text"><strong>Phone:</strong> ' .$phone .'</h4>
-                </div>
-                </div>
+        $sql = "SELECT * FROM profiles WHERE user_id = '$userId'";
+        // Execute the query
+        $resultf = mysqli_query($conn, $sql);
+
+        // Check if the query was successful and a row was returned
+        if ($resultf && mysqli_num_rows($resultf) > 0) {
+            // Fetch the row and retrieve the user's profile photo URL
+            $rowf = mysqli_fetch_assoc($resultf);
+            $about = $rowf['bio'];
+            $phone = $rowf['phone'];
+        }
+
+        if ($row) {
+            echo '<div class="card mt-5">
+        <div class="row">
+        <div class="col-md-6 mx-md-5">
+            <h3 class="card-title ms-3 p-2">' . $row['name'] . '</h3>
+            <p class="card-text ms-4"><strong>Posted on:</strong> ' . $row['created_at'] . "  location: " . $row['location'] . '</p>
+            <img src="' . $row['image'] . '" class="card-img-top" alt="Book Cover">
+            <div class="card-body">
+                <p class="card-text"><strong>Description:</strong> ' . $row['description'] . '</p>
+                <p class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</p>
+                <p class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</p>
+                <p class="card-text"><strong>Category:</strong> ' . $row['category_name'] . '</p>
+                <p class="card-text"><strong>Subcategory:</strong> ' . $row['subcategories_name'] . '</p>
+                <p class="card-text"><strong>Writer:</strong> ' . $row['writers_name'] . '</p>
+                <p class="card-text"><strong>Publisher:</strong> ' . $row['publishers_name'] . '</p>
+                <p class="card-text"><strong>Edition:</strong> ' . $row['edition'] . '</p>
             </div>
-            </div>';
-            
-            } else {
-                echo '<p>Book not found.</p>';
-            }
+        </div>
+        <div class="col-md-4 mt-5">
+        <div class="mt-5">
+        <div class="card m-sm-1">
+                <h3 class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</h3>
+                <h5 class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</h5>
+                <h5 class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</h5>
+                <h4 class="card-text"><strong>Phone:</strong> ' . $phone . '</h4>
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>';
+        } else {
+            echo '<p>Book not found.</p>';
+        }
         ?>
 
-         <?php
+        <?php
         // Database connection settings
-       require 'connDB.php';
+        require 'connDB.php';
 
         // Fetch comments from the database for a specific book
-        
+
         $sql = "SELECT comments.id, comments.comment, comments.user_id, comments.reply_id, comments.created_at, users.name
                 FROM comments
                 INNER JOIN users ON comments.user_id = users.id
@@ -194,7 +197,7 @@ session_start();
                 echo '</div>';
             }
         } else {
-            echo '<p>No comments found.</p>';
+            echo '<p class="mt-2">No comments found.</p>';
         }
 
         // Close the database connection
@@ -215,83 +218,86 @@ session_start();
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/js/jquery-3.7.0.min.js"></script>
-    
-    <script>
-    $(document).ready(function() {
-        // Edit comment button click event
-        $(document).on('click', '.edit-comment', function(e) {
-            e.preventDefault();
-            var commentId = $(this).data('comment-id');
-            var commentText = $(this).parent().siblings('.card-text').text().trim();
-            $('#comment').val(commentText);
-            $('#comment-id').val(commentId);
-        });
 
-        // Delete comment button click event
-        $(document).on('click', '.delete-comment', function(e) {
-            e.preventDefault();
-            var commentId = $(this).data('comment-id');
-            if (confirm('Are you sure you want to delete this comment?')) {
-                // Perform delete operation using AJAX or submit a form to delete the comment
+    <script>
+        $(document).ready(function() {
+            // Edit comment button click event
+            $(document).on('click', '.edit-comment', function(e) {
+                e.preventDefault();
+                var commentId = $(this).data('comment-id');
+                var commentText = $(this).parent().siblings('.card-text').text().trim();
+                $('#comment').val(commentText);
+                $('#comment-id').val(commentId);
+            });
+
+            // Delete comment button click event
+            $(document).on('click', '.delete-comment', function(e) {
+                e.preventDefault();
+                var commentId = $(this).data('comment-id');
+                if (confirm('Are you sure you want to delete this comment?')) {
+                    // Perform delete operation using AJAX or submit a form to delete the comment
+                    $.ajax({
+                        url: 'delete-comment.php',
+                        method: 'POST',
+                        data: {
+                            comment_id: commentId
+                        },
+                        success: function(response) {
+                            // Handle the response after deleting the comment
+                            if (response === 'success') {
+                                alert('Comment deleted successfully!');
+                                location.reload(); // Refresh the page to reflect the changes
+                            } else {
+                                alert('An error occurred while deleting the comment. Please try again.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle the error if deleting the comment fails
+                            console.error(xhr.responseText);
+                            alert('An error occurred while deleting the comment. Please try again.');
+                        }
+                    });
+                }
+            });
+
+            // Comment form submission
+            $('#comment-form').submit(function(e) {
+                e.preventDefault();
+                var commentId = $('#comment-id').val();
+                var commentText = $('#comment').val();
+                var bookId = <?= json_encode($bookId) ?>;
+
+                console.log(commentId);
+                console.log(commentText);
+                console.log(bookId);
+
+                // Perform add/edit operation using AJAX or submit a form to add/edit the comment
                 $.ajax({
-                    url: 'delete-comment.php',
+                    url: 'add-edit-comment.php',
                     method: 'POST',
-                    data: { comment_id: commentId },
+                    data: {
+                        comment_id: commentId,
+                        book_id: bookId,
+                        comment: commentText
+                    },
                     success: function(response) {
-                        // Handle the response after deleting the comment
+                        // Handle the response after adding/editing the comment
                         if (response === 'success') {
-                            alert('Comment deleted successfully!');
+                            alert('Commentadded successfully!');
                             location.reload(); // Refresh the page to reflect the changes
                         } else {
-                            alert('An error occurred while deleting the comment. Please try again.');
+                            alert('An error occurred while saving the comment. Please try again.');
                         }
                     },
                     error: function(xhr, status, error) {
-                        // Handle the error if deleting the comment fails
+                        // Handle the error if adding/editing the comment fails
                         console.error(xhr.responseText);
-                        alert('An error occurred while deleting the comment. Please try again.');
-                    }
-                });
-            }
-        });
-
-        // Comment form submission
-        $('#comment-form').submit(function(e) {
-            e.preventDefault();
-            var commentId = $('#comment-id').val();
-            var commentText = $('#comment').val();
-            var bookId = <?=json_encode($bookId)?>;
-
-            console.log(commentId);
-            console.log(commentText);
-            console.log(bookId);
-
-            // Perform add/edit operation using AJAX or submit a form to add/edit the comment
-            $.ajax({
-                url: 'add-edit-comment.php',
-                method: 'POST',
-                data: {
-                    comment_id: commentId,
-                    book_id: bookId,
-                    comment: commentText
-                },
-                success: function(response) {
-                    // Handle the response after adding/editing the comment
-                    if (response === 'success') {
-                        alert('Commentadded successfully!');
-                        location.reload(); // Refresh the page to reflect the changes
-                    } else {
                         alert('An error occurred while saving the comment. Please try again.');
                     }
-                },
-                error: function(xhr, status, error) {
-                    // Handle the error if adding/editing the comment fails
-                    console.error(xhr.responseText);
-                    alert('An error occurred while saving the comment. Please try again.');
-                }
+                });
             });
         });
-    });
     </script>
 </body>
+
 </html>
