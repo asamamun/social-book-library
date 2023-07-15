@@ -92,7 +92,7 @@ $conn->close();
       <div class="row g-0 my-5">
         <div class="col-md-3 mt-5">
             <div class="card mt-5 ">
-              <div class="card-body vh-100">
+              <div class="card-body">
               <h3 class="m-1">All Categories</h3> <hr>
               <?php echo $cards; ?>
 

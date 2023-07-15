@@ -172,7 +172,6 @@ if (isset($_SESSION['user_id'])) {
             <a class="nav-link active text-white" href="register.php">Registration</a>
           </li>
         <?php endif; ?>
-
       </ul>
     </div>
   </nav>

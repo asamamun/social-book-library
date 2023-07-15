@@ -13,6 +13,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $_SESSION['user_id'] = $row['id'];
     $_SESSION['loggedin'] = true;
+    $_SESSION['role'] = $row['role'];
 
     if ($row['role'] == 1) {
         // User role

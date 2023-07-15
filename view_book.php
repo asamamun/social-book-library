@@ -18,8 +18,8 @@ require 'connDB.php';
             object-fit: cover;
         }
         img{
-            max-width: 750px;
-            max-height: 750px;
+            max-width: 600px;
+            max-height: 700px;
         }
     </style>
 </head>
@@ -113,7 +113,7 @@ require 'connDB.php';
             if ($row) {
                 echo '<div class="card mt-5">
                 <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6 mx-md-5">
                     <h3 class="card-title ms-3 p-2">' . $row['name'] . '</h3>
                     <p class="card-text ms-4"><strong>Posted on:</strong> ' . $row['created_at'] ."  location: ". $row['location'] . '</p>
                     <img src="' . $row['image'] . '" class="card-img-top" alt="Book Cover">
@@ -129,11 +129,13 @@ require 'connDB.php';
                     </div>
                 </div>
                 <div class="col-md-4 mt-5">
-                <div class="card me-4">
+                <div class="mt-5">
+                <div class="card m-sm-1">
                         <h3 class="card-text"><strong>For sale by:</strong> ' . $row['users_name'] . '</h3>
                         <h5 class="card-text"><strong>Price:</strong> ' . $row['price'] . ' Tk</h5>
                         <h5 class="card-text"><strong>Selling Price:</strong> ' . $row['sellprice'] . ' Tk</h5>
                         <h4 class="card-text"><strong>Phone:</strong> ' .$phone .'</h4>
+                </div>
                 </div>
                 </div>
             </div>
@@ -181,7 +183,7 @@ require 'connDB.php';
                 echo '</div>';
             }
         } else {
-            echo '<p>No comments found.</p>';
+            echo '<p class="mt-2">No comments found.</p>';
         }
 
         // Close the database connection
@@ -195,7 +197,7 @@ require 'connDB.php';
             </div>
             <input type="hidden" name="book_id" value="<?php echo $bookId; ?>">
             <input type="hidden" name="comment_id" id="comment-id" value="">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mt-1">Submit</button>
         </form>
     </div>
     </div>

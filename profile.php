@@ -85,7 +85,7 @@ if (isset($_SESSION['user_id'])) {
         </li>
         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
           <!-- User is logged in, show profile anchor link -->
-          <li class="nav-item px-4">
+          <li class="nav-item">
             <a class="nav-link active" href="profile.php">
               <?php
               // Check if session variable is set for the profile picture
@@ -110,7 +110,13 @@ if (isset($_SESSION['user_id'])) {
             <a class="nav-link active text-white" href="register.php">Registration</a>
           </li>
         <?php endif; ?>
-
+        <li class="nav-item mt-2 pe-4">
+          <?php
+          if($_SESSION['role'] == 2){
+            echo '<a class="nav-link active text-white" href="admin">Admin</a>';
+          }
+          ?>
+        </li>
       </ul>
     </div>
   </nav>
@@ -370,25 +376,27 @@ if (isset($_SESSION['user_id'])) {
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
   <script src="assets/js/jquery-3.7.0.min.js"></script>
-    <script>
-        $(document).on('click', '.delete-book', function() {
-            var bookId = $(this).data('book-id');
-            
-            // Confirm deletion
-            if (confirm("Are you sure you want to delete this book?")) {
-                // AJAX request to delete the book
-                $.ajax({
-                    url: 'delete_book.php',
-                    type: 'POST',
-                    data: { bookId: bookId },
-                    success: function(response) {
-                        // Reload the page to reflect the updated search results
-                        location.reload();
-                    }
-                });
-            }
+  <script>
+    $(document).on('click', '.delete-book', function() {
+      var bookId = $(this).data('book-id');
+
+      // Confirm deletion
+      if (confirm("Are you sure you want to delete this book?")) {
+        // AJAX request to delete the book
+        $.ajax({
+          url: 'delete_book.php',
+          type: 'POST',
+          data: {
+            bookId: bookId
+          },
+          success: function(response) {
+            // Reload the page to reflect the updated search results
+            location.reload();
+          }
         });
-    </script>
+      }
+    });
+  </script>
   <script>
     $(document).ready(function() {
       // Populate divisions dropdown

@@ -145,7 +145,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                                 <?php endif; ?>
                                 <li class="nav-item px-4 me-5">
                                     <!-- Button to trigger the action -->
-                                    <button type="button" class="btn btn-warning" id="postButton">POST YOUR BOOK</button>
+                                    <button type="button" class="btn btn-warning" id="postButtonf">POST YOUR BOOK</button>
                                 </li>
                             </ul>
                         </div>
@@ -500,8 +500,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         var loggedIn = <?php echo json_encode($_SESSION['loggedin']); ?>;
 
         $(document).ready(function() {
-            // Handle post button click event
-            $("#postButton").on("click", function() {
+            $("#postButton, #postButtonf").click(function() {
                 // Check if the user is logged in
                 if (loggedIn) {
                     // Show the post modal
