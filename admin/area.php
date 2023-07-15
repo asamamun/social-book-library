@@ -95,8 +95,8 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="card mt-5">
+    <div class="container mt-5">
+        <div class="card">
             <div class="card-header">Add Area</div>
             <div class="card-body">
                 <form id="areaForm" method="post" action="insert_area.php">

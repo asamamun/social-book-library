@@ -10,10 +10,10 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container  mt-5">
 
         <!-- Add District Form -->
-        <div class="card mt-5">
+        <div class="card">
             <div class="card-header">Add District</div>
             <div class="card-body">
                 <form id="districtForm">
